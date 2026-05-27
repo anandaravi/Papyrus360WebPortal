@@ -2,6 +2,14 @@
   "name": "papyrus360",
   "version": "0.1.0",
   "private": true,
+  "description": "Papyrus360 marketing site — Netique Infotech Pvt Ltd. — software products and 360-degree consultancy for the Indian paper industry",
+  "author": "Netique Infotech Pvt Ltd.",
+  "license": "UNLICENSED",
+  "homepage": "https://papyrus360.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anandaravi/Papyrus360WebPortal.git"
+  },
   "scripts": {
     "dev": "next dev -p 4000",
     "build": "next build",
