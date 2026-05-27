@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
+import { StatsBar } from '@/components/sections/stats-bar';
+import { CTABanner } from '@/components/sections/cta-banner';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -34,6 +34,8 @@ export default function AboutPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
       </div>
+
+      <StatsBar />
 
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
       {/* Header */}
@@ -90,7 +92,8 @@ export default function AboutPage() {
             <p>
               Papyrus360 is the brand of Netique Infotech Pvt Ltd., representing our
               360-degree service offering around the paper industry — software products,
-              consultancy, raw material sourcing, and compliance advisory, all under one roof.
+              consultancy, direct import of waste paper and woodchips for raw material supply,
+              and compliance advisory, all under one roof.
             </p>
           </div>
         </div>
@@ -107,6 +110,7 @@ export default function AboutPage() {
               'Compliance built-in — GST, TDS, FEMA, PF, ESI',
               'Long-term partnership, not one-time implementation',
               'Proprietary optimisation for deckle and production',
+              'Direct imports of waste paper & woodchips for mill raw material supply',
             ].map((point) => (
               <div key={point} className="flex items-start gap-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0" />
@@ -135,22 +139,13 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* CTA */}
-      <div className="text-center">
-        <h2 className="text-2xl font-bold mb-4">Ready to talk?</h2>
-        <p className="text-text-2 mb-8 max-w-md mx-auto text-sm">
-          Whether you&apos;re evaluating ERP, need deckle optimisation, or want to discuss
-          compliance consulting — we&apos;re here.
-        </p>
-        <Link
-          href="/contact"
-          className="inline-flex items-center gap-2 px-7 py-3.5 bg-amber-500 text-black font-semibold rounded-xl hover:bg-amber-400 transition-colors duration-200"
-        >
-          Contact Us
-          <ArrowRight size={16} />
-        </Link>
-      </div>
     </div>
+    <CTABanner
+      eyebrow="Ready to talk?"
+      title={<>Let's discuss<br />your mill.</>}
+      subtitle="Whether you're evaluating ERP, need deckle optimisation, or want to discuss compliance consulting — we're here."
+      primaryLabel="Contact Us"
+    />
     </div>
   );
 }

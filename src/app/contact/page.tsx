@@ -90,10 +90,10 @@ export default function ContactPage() {
                 Email
               </p>
               <a
-                href="mailto:vs@papyrus360.com"
+                href="mailto:info@papyrus360.com"
                 className="text-sm text-text-2 hover:text-amber-400 transition-colors"
               >
-                vs@papyrus360.com
+                info@papyrus360.com
               </a>
             </div>
             <div>

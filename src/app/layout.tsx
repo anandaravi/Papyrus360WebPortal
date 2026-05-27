@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
+import { Breadcrumbs } from '@/components/layout/breadcrumbs';
+import { FloatingActions } from '@/components/layout/floating-actions';
 import { PageTransition } from '@/components/ui/page-transition';
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
     template: '%s — Papyrus360',
   },
   description:
-    '24+ years in operation. Founded by domain experts with 35+ years of paper industry expertise. Products: BPApp ERP, Optrim deckle optimisation. Services: ERP implementation, process consulting, compliance.',
+    '24+ years in operation. Founded by domain experts with 35+ years of paper industry expertise. Products: BPApp ERP, Optrim deckle optimisation. Services: ERP implementation, consulting, compliance, plus direct import of waste paper, woodchips, pulp, and coal for raw material supply.',
   metadataBase: new URL('https://papyrus360.com'),
   keywords: [
     'paper mill software',
@@ -26,6 +28,11 @@ export const metadata: Metadata = {
     'Netique Infotech Pvt Ltd.',
     'Papyrus360',
     'GST compliance paper industry',
+    'waste paper imports India',
+    'OCC ONP NDLK supplier India',
+    'woodchip imports paper mill',
+    'pulp imports paper industry',
+    'raw material sourcing paper mill',
   ],
   authors: [{ name: 'Netique Infotech Pvt Ltd.', url: 'https://papyrus360.com' }],
   creator: 'Netique Infotech Pvt Ltd.',
@@ -87,9 +94,11 @@ export default function RootLayout({
           Skip to content
         </a>
         <Navbar />
+        <Breadcrumbs />
         <main id="main-content" tabIndex={-1} className="flex-1">
           <PageTransition>{children}</PageTransition>
         </main>
+        <FloatingActions />
         <Footer />
       </body>
     </html>

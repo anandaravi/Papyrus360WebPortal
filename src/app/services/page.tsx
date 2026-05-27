@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { services, type Service } from '@/lib/services';
 import { PageHero } from '@/components/ui/page-hero';
+import { CTABanner } from '@/components/sections/cta-banner';
 
 export const metadata: Metadata = {
   title: 'Services',
@@ -110,22 +111,13 @@ export default function ServicesPage() {
         <ServiceGrid items={consultancyServices} />
       </div>
 
-      {/* CTA */}
-      <div className="rounded-2xl border border-border bg-surface p-10 text-center">
-        <h2 className="text-2xl font-bold mb-3">Not sure which service fits?</h2>
-        <p className="text-text-2 mb-6 max-w-lg mx-auto text-sm">
-          Tell us about your mill — we&apos;ll recommend the right combination of products
-          and services.
-        </p>
-        <Link
-          href="/contact"
-          className="inline-flex items-center gap-2 px-7 py-3.5 bg-amber-500 text-black font-semibold rounded-xl hover:bg-amber-400 transition-colors duration-200"
-        >
-          Start a Conversation
-          <ArrowRight size={16} />
-        </Link>
-      </div>
     </div>
+    <CTABanner
+      eyebrow="Not sure which service fits?"
+      title={<>Tell us about<br />your mill.</>}
+      subtitle="We'll recommend the right combination of products and services for your operation."
+      primaryLabel="Start a Conversation"
+    />
     </>
   );
 }

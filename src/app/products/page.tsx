@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { products } from '@/lib/products';
 import type { ProductStatus } from '@/lib/products';
 import { PageHero } from '@/components/ui/page-hero';
+import { CTABanner } from '@/components/sections/cta-banner';
 
 export const metadata: Metadata = {
   title: 'Products',
@@ -102,6 +103,11 @@ export default function ProductsPage() {
         })}
       </div>
     </div>
+    <CTABanner
+      eyebrow="Ready to see them in action?"
+      title={<>Find the right product<br />for your mill.</>}
+      subtitle="From full ERP to standalone deckle matching — let's discuss what fits your operation."
+    />
     </>
   );
 }

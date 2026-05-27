@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight, Quote, MapPin, CheckCircle2 } from 'lucide-react';
+import { Quote, MapPin, CheckCircle2 } from 'lucide-react';
 import { CLIENTS } from '@/lib/clients';
 import { MapLoader } from '@/components/clients/map-loader';
 import { PageHero } from '@/components/ui/page-hero';
+import { CTABanner } from '@/components/sections/cta-banner';
 
 export const metadata: Metadata = {
   title: 'Clients',
@@ -134,21 +134,13 @@ export default function ClientsPage() {
         </div>
       </div>
 
-      {/* CTA */}
-      <div className="rounded-2xl border border-border bg-surface p-10 text-center">
-        <h2 className="text-2xl font-bold mb-3">Join 38+ mills already running on Papyrus360</h2>
-        <p className="text-text-2 mb-6 max-w-lg mx-auto text-sm">
-          From kraft mills in Gujarat to newsprint plants in Odisha — we know your industry.
-        </p>
-        <Link
-          href="/contact"
-          className="inline-flex items-center gap-2 px-7 py-3.5 bg-amber-500 text-black font-semibold rounded-xl hover:bg-amber-400 transition-colors duration-200"
-        >
-          Get in Touch
-          <ArrowRight size={16} />
-        </Link>
-      </div>
     </div>
+    <CTABanner
+      eyebrow="Join the network"
+      title={<>{indiaCount + intlCount}+ mills.<br />One platform.</>}
+      subtitle="From kraft mills in Gujarat to newsprint plants in Odisha — we know your industry. Add your mill to the network."
+      primaryLabel="Get in Touch"
+    />
     </>
   );
 }

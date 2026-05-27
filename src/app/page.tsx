@@ -3,6 +3,9 @@ import Image from 'next/image';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { products } from '@/lib/products';
 import { services } from '@/lib/services';
+import { StatsBar } from '@/components/sections/stats-bar';
+import { ComplianceStrip } from '@/components/sections/compliance-strip';
+import { CTABanner } from '@/components/sections/cta-banner';
 
 const activeProducts = products.filter((p) => p.status !== 'legacy');
 
@@ -76,6 +79,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <StatsBar />
+
       {/* Products */}
       <section className="py-20 border-b border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -147,8 +152,19 @@ export default function HomePage() {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="amber-card rounded-2xl p-6 bg-background flex flex-col gap-3 group"
+                className="amber-card rounded-2xl overflow-hidden bg-background flex flex-col group"
               >
+                <div className="relative w-full aspect-[3/2] overflow-hidden bg-surface-2">
+                  <Image
+                    src={`/images/services/${service.slug}.png`}
+                    alt={service.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                </div>
+                <div className="p-6 flex flex-col gap-3 flex-1">
                 <h3 className="text-base font-semibold text-foreground group-hover:text-amber-400 transition-colors duration-200">
                   {service.name}
                 </h3>
@@ -164,8 +180,68 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
+                </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Raw Material Imports Highlight */}
+      <section className="py-20 border-b border-border">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+              <Image
+                src="/images/services/raw-material-import-export.png"
+                alt="Waste paper and woodchip imports for Indian paper mills"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-background/40 via-transparent to-transparent" />
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
+                Raw Material Supply
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-5">
+                Waste paper & woodchip imports
+              </h2>
+              <p className="text-text-2 leading-relaxed mb-6">
+                Beyond software and consulting, we directly source and import waste paper grades,
+                woodchips, pulp, and coal for Indian paper mills — backed by a global supplier
+                network built over two decades.
+              </p>
+              <ul className="grid grid-cols-2 gap-x-6 gap-y-2 mb-8">
+                {[
+                  'OCC · ONP · NDLK · SMK',
+                  'DSOCC · LP Cup Stock',
+                  'Woodchips & wood powder',
+                  'Virgin & recycled pulp',
+                  'Coal for boilers',
+                  'FEMA + customs handled',
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm text-text-2">
+                    <CheckCircle size={14} className="text-amber-500 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-3 text-xs text-text-3 mb-6">
+                <span className="px-3 py-1 rounded-full border border-border bg-surface">USA</span>
+                <span className="px-3 py-1 rounded-full border border-border bg-surface">Europe</span>
+                <span className="px-3 py-1 rounded-full border border-border bg-surface">Middle East</span>
+                <span className="px-3 py-1 rounded-full border border-border bg-surface">SE Asia</span>
+                <span className="px-3 py-1 rounded-full border border-border bg-surface">Australia</span>
+              </div>
+              <Link
+                href="/services/raw-material-import-export"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-amber-400 hover:text-amber-300 transition-colors"
+              >
+                Explore sourcing services <ArrowRight size={14} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -202,6 +278,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <ComplianceStrip />
+
       {/* Clients */}
       <section className="py-16 border-b border-border bg-surface">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
@@ -218,25 +296,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            Start a conversation
-          </h2>
-          <p className="text-text-2 mb-8 max-w-xl mx-auto">
-            Tell us about your mill. We&apos;ll show you how Papyrus360 products and
-            services can fit your operations.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-amber-500 text-black font-semibold rounded-xl hover:bg-amber-400 transition-colors duration-200 text-lg"
-          >
-            Get in Touch
-            <ArrowRight size={18} />
-          </Link>
-        </div>
-      </section>
+      <CTABanner
+        eyebrow="Start a conversation"
+        title={<>Tell us about<br />your mill.</>}
+        subtitle="We'll show you how Papyrus360 products and services can fit your operations — software, consulting, or raw-material supply."
+        primaryLabel="Get in Touch"
+      />
     </>
   );
 }

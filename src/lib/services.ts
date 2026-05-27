@@ -212,18 +212,20 @@ export const services: Service[] = [
   },
   {
     slug: 'raw-material-import-export',
-    name: 'Raw Material Import / Export',
-    tagline: 'Global sourcing of pulp, waste paper & coal',
+    name: 'Waste Paper & Woodchip Imports',
+    tagline: 'Direct import of recovered fibre & pulping inputs',
     description:
-      'Import and export advisory for paper industry raw materials — waste paper (OCC, ONP, NDLK), pulp grades, coal, and woodchips from global markets.',
+      'Direct sourcing and import of waste paper grades and woodchips for Indian paper mills — backed by global supplier network across USA, Europe, Middle East, SE Asia, and Australia. Also imports pulp, coal, and other pulping raw materials. Full FEMA and customs compliance handled in-house.',
     icon: 'Ship',
     category: 'consultancy',
     points: [
-      'Waste paper (OCC, NDLK, ONP, SMK)',
-      'Pulp sourcing',
-      'Coal & woodchips',
-      'Global supplier network (USA, Europe, Middle East, SE Asia)',
-      'FEMA & customs compliance',
+      'Waste paper grades — OCC, ONP, NDLK, SMK, DSOCC, LP Cup Stock',
+      'Woodchips & wood powder for pulping',
+      'Imported pulp (virgin, bleached, recycled)',
+      'Coal supplies for boiler operations',
+      'Global supplier network — USA · Europe · Middle East · SE Asia · Australia',
+      'FEMA & customs compliance handled end-to-end',
+      'Baled · palletized · roll stock options',
     ],
   },
   {
