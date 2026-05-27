@@ -1,8 +1,5 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { SITE } from "@/lib/constants";
 
@@ -43,12 +40,7 @@ export function CTABanner({
       <div className="absolute left-0 top-0 bottom-0 w-1 bg-amber-500" />
 
       <div className="relative max-w-4xl mx-auto px-6 py-24 md:py-28 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <div>
           <p className="text-amber-500 text-xs font-semibold uppercase tracking-widest mb-5">
             {eyebrow}
           </p>
@@ -76,7 +68,7 @@ export function CTABanner({
               Email us directly
             </a>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

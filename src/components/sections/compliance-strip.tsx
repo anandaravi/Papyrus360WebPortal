@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
 
 const BADGES = [
@@ -16,13 +13,7 @@ export function ComplianceStrip() {
   return (
     <section className="py-20 bg-background border-b border-border-dim">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10"
-        >
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
           <div>
             <p className="text-amber-500 text-xs font-semibold uppercase tracking-widest mb-3">
               Indian Compliance
@@ -37,16 +28,12 @@ export function ComplianceStrip() {
             Every statutory obligation handled across our products and consulting engagements —
             no third-party compliance bolt-ons required.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          {BADGES.map((b, i) => (
-            <motion.div
+          {BADGES.map((b) => (
+            <div
               key={b.label}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
               className="bg-surface border rounded-xl p-5 flex flex-col gap-3 transition-colors"
               style={{ borderColor: `${b.color}25` }}
             >
@@ -60,7 +47,7 @@ export function ComplianceStrip() {
                 <p className="text-foreground font-bold text-sm mb-1">{b.label}</p>
                 <p className="text-text-3 text-[11px] leading-snug">{b.sub}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

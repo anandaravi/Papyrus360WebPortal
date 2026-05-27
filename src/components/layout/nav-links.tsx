@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogIn } from 'lucide-react';
 import { cn } from '@/lib/cn';
 
 const navLinks = [
@@ -46,6 +46,13 @@ export function NavLinks() {
       {/* CTA */}
       <div className="hidden md:flex items-center gap-3">
         <Link
+          href="/customer-login"
+          className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium border border-border text-text-2 rounded-lg hover:text-foreground hover:border-amber-500/50 transition-colors duration-200"
+        >
+          <LogIn size={14} />
+          Customer Login
+        </Link>
+        <Link
           href="/contact"
           className="px-4 py-2 text-sm font-semibold bg-amber-500 text-black rounded-lg hover:bg-amber-400 transition-colors duration-200"
         >
@@ -85,9 +92,17 @@ export function NavLinks() {
               );
             })}
             <Link
+              href="/customer-login"
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium border border-border text-text-2 rounded-lg hover:text-foreground transition-colors duration-200 text-center"
+            >
+              <LogIn size={14} />
+              Customer Login
+            </Link>
+            <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-2 px-4 py-2.5 text-sm font-semibold bg-amber-500 text-black rounded-lg hover:bg-amber-400 transition-colors duration-200 text-center"
+              className="mt-1 px-4 py-2.5 text-sm font-semibold bg-amber-500 text-black rounded-lg hover:bg-amber-400 transition-colors duration-200 text-center"
             >
               Get in Touch
             </Link>
