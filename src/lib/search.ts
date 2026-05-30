@@ -36,7 +36,7 @@ export function getSearchIndex(): SearchEntry[] {
     entries.push({
       title: p.name,
       subtitle: p.tagline,
-      url: `/products/${p.slug}`,
+      url: p.externalUrl ?? `/products/${p.slug}`,
       type: "Product",
       keywords: `${p.name} ${p.tagline} ${p.description} ${p.category} ${p.status} product`,
     });

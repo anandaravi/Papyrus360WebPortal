@@ -33,7 +33,7 @@ export function SearchDialog() {
     () =>
       index.filter((e) =>
         [
-          "/products/bpapp",
+          "https://bpapperp.papyrus360.com",
           "/products/optrim",
           "/services/software-implementation",
           "/services/raw-material-import-export",
@@ -94,7 +94,11 @@ export function SearchDialog() {
       const sel = displayed[highlight];
       if (sel) {
         close();
-        router.push(sel.url);
+        if (sel.url.startsWith("http")) {
+          window.open(sel.url, "_blank", "noopener,noreferrer");
+        } else {
+          router.push(sel.url);
+        }
       }
     }
   };
@@ -182,6 +186,7 @@ export function SearchDialog() {
                       href={e.url}
                       onClick={close}
                       data-idx={i}
+                      {...(e.url.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                       className={`flex items-center gap-3 px-5 py-2.5 transition-colors ${
                         highlight === i
                           ? "bg-amber-500/10 border-l-2 border-amber-500"

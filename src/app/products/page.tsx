@@ -68,7 +68,8 @@ export default function ProductsPage() {
                 {group.map((product) => (
                   <Link
                     key={product.slug}
-                    href={`/products/${product.slug}`}
+                    href={product.externalUrl ?? `/products/${product.slug}`}
+                    {...(product.externalUrl ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="amber-card rounded-2xl p-6 bg-surface flex flex-col gap-3 group"
                   >
                     <div className="flex items-start justify-between">
