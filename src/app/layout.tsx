@@ -72,12 +72,36 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: ['UkQtoTTTckHDJukH-prr3_AkbqPbGwPzMiWaW5OdlNU', 'Hl-wSikvrp_CYwavDOsaANQ87ZEdVLAIhxwZqSDjgdQ'],
+  },
 };
 
 export const viewport = {
   themeColor: '#F59E0B',
   width: 'device-width',
   initialScale: 1,
+};
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Papyrus360',
+  legalName: 'Netique Infotech Pvt Ltd.',
+  url: 'https://papyrus360.com',
+  logo: 'https://papyrus360.com/papyrus360.png',
+  foundingDate: '2001',
+  description: 'Enterprise software and consulting for the Indian paper manufacturing industry. Products include BPApp ERP and Optrim deckle optimisation.',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'IN',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    url: 'https://papyrus360.com/contact',
+  },
+  sameAs: [],
 };
 
 export default function RootLayout({
@@ -90,6 +114,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
