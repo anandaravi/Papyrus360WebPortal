@@ -16,14 +16,14 @@ export const metadata: Metadata = {
     template: '%s — Papyrus360',
   },
   description:
-    '24+ years in operation. Founded by domain experts with 35+ years of paper industry expertise. Products: BPApp ERP, Optrim deckle optimisation. Services: ERP implementation, consulting, compliance, plus direct import of waste paper, woodchips, pulp, and coal for raw material supply.',
+    '24+ years in operation. Founded by domain experts with 35+ years of paper industry expertise. Products: Papyrus BP App ERP, Optrim deckle optimisation. Services: ERP implementation, consulting, compliance, plus direct import of waste paper, woodchips, pulp, and coal for raw material supply.',
   metadataBase: new URL('https://papyrus360.com'),
   keywords: [
     'paper mill software',
     'paper industry ERP',
     'deckle matching software',
     'Indian paper manufacturing',
-    'BPApp ERP',
+    'Papyrus BP App ERP',
     'Optrim deckle',
     'Netique Infotech Pvt Ltd.',
     'Papyrus360',
@@ -91,7 +91,7 @@ const organizationSchema = {
   url: 'https://papyrus360.com',
   logo: 'https://papyrus360.com/papyrus360.png',
   foundingDate: '2001',
-  description: 'Enterprise software and consulting for the Indian paper manufacturing industry. Products include BPApp ERP and Optrim deckle optimisation.',
+  description: 'Enterprise software and consulting for the Indian paper manufacturing industry. Products include Papyrus BP App ERP and Optrim deckle optimisation.',
   address: {
     '@type': 'PostalAddress',
     addressCountry: 'IN',

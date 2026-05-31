@@ -12,7 +12,7 @@ export type SearchEntry = {
 
 const STATIC_PAGES: SearchEntry[] = [
   { title: "Home", subtitle: "Papyrus360 overview", url: "/", type: "Page", keywords: "home overview papyrus360 landing" },
-  { title: "Products", subtitle: "7 products — ERP, deckle, specialist", url: "/products", type: "Page", keywords: "products bpapp optrim papy ndm paper agent pdn" },
+  { title: "Products", subtitle: "7 products — ERP, deckle, specialist", url: "/products", type: "Page", keywords: "products papyrus bp app optrim papy ndm paper agent pdn" },
   { title: "Services", subtitle: "14 services — software + consultancy", url: "/services", type: "Page", keywords: "services consulting implementation support compliance" },
   { title: "Clients", subtitle: "38 paper mills across India", url: "/clients", type: "Page", keywords: "clients customers paper mills india map testimonials" },
   { title: "About", subtitle: "Netique Infotech · 24+ years · founders", url: "/about", type: "Page", keywords: "about netique infotech founders mission history story" },
@@ -26,7 +26,7 @@ const TOPICS: SearchEntry[] = [
   { title: "Woodchip & Pulp Imports", subtitle: "Pulping inputs · global supply", url: "/services/raw-material-import-export", type: "Topic", keywords: "woodchip pulp coal imports pulping raw material" },
   { title: "GST Compliance", subtitle: "GST · TDS · FEMA · PF · ESI", url: "/services/compliance-consulting", type: "Topic", keywords: "gst tds fema pf esi compliance audit tax" },
   { title: "Greenfield Mill Setup", subtitle: "Factory & machine erection", url: "/services/factory-machine-erection", type: "Topic", keywords: "greenfield brownfield mill factory machine erection commissioning" },
-  { title: "ERP Implementation", subtitle: "BPApp deployment + training", url: "/services/software-implementation", type: "Topic", keywords: "erp implementation deployment training go-live bpapp" },
+  { title: "ERP Implementation", subtitle: "Papyrus BP App deployment + training", url: "/services/software-implementation", type: "Topic", keywords: "erp implementation deployment training go-live papyrus bp app" },
 ];
 
 export function getSearchIndex(): SearchEntry[] {

@@ -19,7 +19,7 @@ function esc(s: string): string {
 
 const subjectLabels: Record<string, string> = {
   general: 'General Enquiry',
-  'erp-demo': 'ERP Demo (BPApp)',
+  'erp-demo': 'ERP Demo (Papyrus BP App)',
   consulting: 'Process / Compliance Consulting',
   partnership: 'Partnership',
 };

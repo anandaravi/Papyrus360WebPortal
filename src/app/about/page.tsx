@@ -17,7 +17,7 @@ const milestones = [
   { year: '2010', event: 'Optrim desktop launched — second-generation deckle optimisation' },
   { year: '2015', event: 'PDN Process App — bespoke conversion handling delivered' },
   { year: '2020', event: 'Optrim Web — browser-based deckle matching, zero installation' },
-  { year: '2026', event: 'BPApp — full 44-module cloud ERP for paper manufacturing launched' },
+  { year: '2026', event: 'Papyrus BP App — full 44-module cloud ERP for paper manufacturing launched' },
 ];
 
 export default function AboutPage() {
@@ -86,7 +86,7 @@ export default function AboutPage() {
             </p>
             <p>
               Over time, we expanded into full ERP territory: sales, production planning,
-              procurement, finance, HR, and compliance. Today, BPApp covers 44 modules
+              procurement, finance, HR, and compliance. Today, Papyrus BP App covers 44 modules
               purpose-built for paper manufacturing, while Optrim remains the leading
               standalone deckle optimisation product in the market.
             </p>

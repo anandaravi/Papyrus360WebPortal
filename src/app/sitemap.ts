@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/tools`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/glossary`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/paper-grades`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/paper-mill-machines`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/standards`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/faq`, lastModified: now, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${BASE}/case-studies`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },

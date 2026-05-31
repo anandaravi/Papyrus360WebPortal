@@ -19,7 +19,7 @@ export const services: Service[] = [
     name: 'Software Implementation',
     tagline: 'End-to-end deployment of Papyrus360 products',
     description:
-      'Full implementation lifecycle for BPApp, Optrim, and other Papyrus360 software — requirements, configuration, data migration, training, and go-live support.',
+      'Full implementation lifecycle for Papyrus BP App, Optrim, and other Papyrus360 software — requirements, configuration, data migration, training, and go-live support.',
     icon: 'Settings',
     category: 'software',
     points: [

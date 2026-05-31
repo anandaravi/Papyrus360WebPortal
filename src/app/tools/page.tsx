@@ -124,8 +124,8 @@ export default function ToolsPage() {
       <CTABanner
         eyebrow="Automate these calculations"
         title={<>Let the ERP do<br />the maths.</>}
-        subtitle="Papyrus360 BPApp handles GSM tracking, roll inventory, and pricing automatically — no manual conversion needed."
-        primaryLabel="See BPApp"
+        subtitle="Papyrus360 Papyrus BP App handles GSM tracking, roll inventory, and pricing automatically — no manual conversion needed."
+        primaryLabel="See Papyrus BP App"
         primaryHref="https://bpapperp.papyrus360.com"
       />
     </>

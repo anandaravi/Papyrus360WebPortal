@@ -173,6 +173,267 @@ IMAGES = [
         "w": 1360, "h": 768,
         "prompt": "Paper industry knowledge hub concept, open books and digital tablets showing paper manufacturing insights, industry expert writing about Indian paper industry trends, professional thought leadership content creation, photorealistic",
     },
+    # --- PAPER MILL MACHINES ---
+    {
+        "dir": "machines",
+        "file": "hydrapulper.png",
+        "w": 800, "h": 600,
+        "prompt": "Industrial hydrapulper at paper mill stock preparation area, large cylindrical stainless steel vessel with rotating impeller dissolving wastepaper bales in water, blue stock preparation hall, close-up of pulper drum, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "disc-refiner.png",
+        "w": 800, "h": 600,
+        "prompt": "Paper mill disc refiner machine, large horizontal industrial refiner with inlet and outlet pipes, fiber refining equipment in stock preparation room, refiner discs visible, industrial machinery photography, photorealistic",
+    },
+    {
+        "dir": "machines",
+        "file": "pressure-screen.png",
+        "w": 800, "h": 600,
+        "prompt": "Pressure screen equipment in paper mill stock preparation area, tall cylindrical closed screening vessel with pressure gauges and connecting pipes, fiber cleaning machinery, industrial photography, photorealistic",
+    },
+    {
+        "dir": "machines",
+        "file": "headbox.png",
+        "w": 800, "h": 600,
+        "prompt": "Modern paper machine headbox at wet end, tapered rectangular headbox distributing white fiber suspension evenly across full width onto forming wire, close-up of headbox slice opening with turbulence generators, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "fourdrinier.png",
+        "w": 800, "h": 600,
+        "prompt": "Fourdrinier paper machine forming section at paper mill, long continuous forming wire fabric with white fiber slurry draining through it, wet end of paper machine with suction boxes and table rolls below wire, wide angle view, photorealistic",
+    },
+    {
+        "dir": "machines",
+        "file": "twin-wire-former.png",
+        "w": 800, "h": 600,
+        "prompt": "Modern twin-wire former gap former on high-speed paper machine, two converging forming fabrics squeezing fiber suspension between them at high speed, wet end forming section of modern paper machine, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "shoe-press.png",
+        "w": 800, "h": 600,
+        "prompt": "Paper machine extended nip shoe press section, large shoe press roll with concave shoe against backing roll, press felts visible, massive press nip removing water from paper web, industrial paper machine press section, photorealistic",
+    },
+    {
+        "dir": "machines",
+        "file": "dryer-section.png",
+        "w": 800, "h": 600,
+        "prompt": "Multi-cylinder dryer section of paper machine, long row of large steam-heated cast iron drying cylinders with paper web threading over and under cylinders alternately, dryer felts and steam pipes visible, industrial photography, photorealistic",
+    },
+    {
+        "dir": "machines",
+        "file": "yankee-dryer.png",
+        "w": 800, "h": 600,
+        "prompt": "Enormous Yankee dryer cylinder in tissue paper mill, massive 5-metre diameter polished chrome steel cylinder for tissue drying and creping, doctor blade at bottom of cylinder, tissue machine with hood over top, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "size-press.png",
+        "w": 800, "h": 600,
+        "prompt": "Size press on paper machine, two rolls forming nip with paper web passing between them, starch solution flooding the nip from above, surface sizing station midway along paper machine, industrial photography, photorealistic",
+    },
+    {
+        "dir": "machines",
+        "file": "blade-coater.png",
+        "w": 800, "h": 600,
+        "prompt": "Blade coating station on paper machine, white coating color applied to paper web with flexible steel blade metering coating layer, coating kitchen with mixing tanks in background, coated paper production, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "machine-calender.png",
+        "w": 800, "h": 600,
+        "prompt": "Machine calender stack at end of paper machine, vertical stack of heavy polished steel rolls compressing and smoothing paper web, paper threading through calender nip, finishing section of paper machine, photorealistic",
+    },
+    {
+        "dir": "machines",
+        "file": "supercalender.png",
+        "w": 800, "h": 600,
+        "prompt": "Tall supercalender machine at paper mill, offline calendering equipment with alternating steel and fiber-filled cotton rolls in a tall vertical stack, paper web threading through all nips, shiny surface on calender rolls, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "pope-reel.png",
+        "w": 800, "h": 600,
+        "prompt": "Pope reel assembly at paper mill, side view of complete pope reel machine showing the large horizontal drive drum roll on left, paper reel spool building up on the right being driven by the drum, steel frame structure with guide arms holding the growing paper reel, industrial warehouse floor, similar to manufacturer product photograph of pope reel assembly unit, photorealistic industrial equipment photography",
+    },
+    {
+        "dir": "machines",
+        "file": "slitter-rewinder.png",
+        "w": 800, "h": 600,
+        "prompt": "Aerial bird's eye view of complete slitter rewinder machine at paper mill, large parent jumbo reel unwinding on left, multiple circular slitting knives visible in center cutting paper web into separate lanes, multiple finished customer reels rewinding simultaneously on right, full machine layout visible from above, industrial overhead photography photorealistic",
+    },
+    {
+        "dir": "machines",
+        "file": "sheet-cutter.png",
+        "w": 800, "h": 600,
+        "prompt": "High-speed sheeter machine at paper converting facility, continuous paper reel being cut into precisely sized sheets by cross-cutting blade, stacks of cut sheets accumulating on delivery table, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "digester.png",
+        "w": 800, "h": 600,
+        "prompt": "Large kraft digester vessel at pulp mill, tall cylindrical pressure vessel for cooking wood chips in chemicals at high temperature, continuous digester with chip feeding at top, industrial pulp mill chemical pulping, photorealistic photography",
+    },
+    {
+        "dir": "machines",
+        "file": "recovery-boiler.png",
+        "w": 800, "h": 600,
+        "prompt": "Recovery boiler at kraft pulp mill, massive industrial boiler burning concentrated black liquor, tall boiler structure with steam rising, smelt spout at bottom, chemical recovery process, pulp mill aerial view, photorealistic industrial photography",
+    },
+    # --- MACHINES: WOOD YARD ---
+    {
+        "dir": "machines",
+        "file": "chipper.png",
+        "w": 800, "h": 600,
+        "prompt": "Large industrial wood chipper at paper mill wood yard, massive disc chipper or drum chipper processing whole logs into uniform wood chips, log feeding conveyor, wood chips flying out into chip pile, paper mill wood handling area, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "chip-screen.png",
+        "w": 800, "h": 600,
+        "prompt": "Chip screening machine at paper mill wood yard, vibrating deck chip screen separating wood chips by size, oversized and undersized chip fractions separated on different decks, chip classification equipment, industrial wood yard, photorealistic photography",
+    },
+    # --- MACHINES: STOCK PREP ADDITIONAL ---
+    {
+        "dir": "machines",
+        "file": "drum-pulper.png",
+        "w": 800, "h": 600,
+        "prompt": "Large drum pulper at recycled fiber paper mill, long rotating horizontal cylindrical drum dissolving old corrugated containers OCC in water, drum pulper openings visible, continuous recycled paper processing, stock preparation equipment, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "broke-pulper.png",
+        "w": 800, "h": 600,
+        "prompt": "Broke pulper at paper mill under paper machine, compact pulper vessel collecting and re-pulping damaged paper broke and edge trim, broke conveyor feeding pulper, continuous broke recovery system under paper machine, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "flotation-deinking.png",
+        "w": 800, "h": 600,
+        "prompt": "Flotation deinking cell at recycled fiber paper mill, series of large flotation tanks with foam bubbles carrying ink particles to surface, ink foam removal from recycled pulp, deinking plant equipment, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "high-density-cleaner.png",
+        "w": 800, "h": 600,
+        "prompt": "High-density centrifugal cleaner battery at paper mill stock preparation, bank of conical vortex cleaners removing heavy contaminants like sand staples and grit from paper pulp, cleaner manifold with accept and reject connections, photorealistic industrial photography",
+    },
+    # --- MACHINES: PULP MILL ---
+    {
+        "dir": "machines",
+        "file": "brown-stock-washer.png",
+        "w": 800, "h": 600,
+        "prompt": "Brown stock washer drum at kraft pulp mill, large rotating horizontal drum washer washing black liquor from cooked brown pulp, multiple wash stages, pulp mat forming on drum surface, industrial pulp washing equipment, photorealistic photography",
+    },
+    {
+        "dir": "machines",
+        "file": "oxygen-delignification.png",
+        "w": 800, "h": 600,
+        "prompt": "Oxygen delignification reactor tower at kraft pulp mill, tall vertical pressurized reactor vessel where pulp is treated with oxygen and caustic soda to remove residual lignin before bleaching, pulp mill processing equipment, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "bleaching-tower.png",
+        "w": 800, "h": 600,
+        "prompt": "Bleaching tower at pulp mill, tall vertical bleach tower for chemical bleaching of kraft pulp, multiple bleaching stage towers with connecting pipes and washers, pulp going from brown to white through bleaching sequence, photorealistic industrial photography",
+    },
+    # --- MACHINES: FORMING ADDITIONAL ---
+    {
+        "dir": "machines",
+        "file": "cylinder-mould.png",
+        "w": 800, "h": 600,
+        "prompt": "Cylinder mould vat machine at paper mill, rotating cylindrical wire mould submerged in vat of fiber suspension, multi-ply board formation on vat machine, paperboard manufacturing equipment, multiple vat units in line for multi-ply board, photorealistic industrial photography",
+    },
+    # --- MACHINES: PRESS ADDITIONAL ---
+    {
+        "dir": "machines",
+        "file": "conventional-press.png",
+        "w": 800, "h": 600,
+        "prompt": "Conventional press section of paper machine, two large press rolls forming a nip, press felts on both sides absorbing water squeezed from wet paper web, press roll with grooves for water drainage, paper machine wet pressing, photorealistic industrial photography",
+    },
+    # --- MACHINES: FINISHING ADDITIONAL ---
+    {
+        "dir": "machines",
+        "file": "soft-calender.png",
+        "w": 800, "h": 600,
+        "prompt": "Soft calender on paper machine, two-nip calender with one hard steel roll and one soft elastic polymer-covered roll, gentle calendering for gloss without excessive caliper loss, paper machine finishing section, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "film-press.png",
+        "w": 800, "h": 600,
+        "prompt": "Film press metered size press on paper machine, two rolls with film applicator system applying precise controlled layer of starch or coating to paper web surface, modern surface sizing technology, paper machine mid-section, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "curtain-coater.png",
+        "w": 800, "h": 600,
+        "prompt": "Curtain coater applying coating to paper, thin falling curtain of coating liquid descending onto moving paper web below, contactless curtain coating technology, precise uniform coating application, modern paper coating equipment, photorealistic industrial photography",
+    },
+    # --- MACHINES: CHEMICAL RECOVERY ADDITIONAL ---
+    {
+        "dir": "machines",
+        "file": "black-liquor-evaporators.png",
+        "w": 800, "h": 600,
+        "prompt": "Black liquor evaporator station at kraft pulp mill, multiple-effect evaporator vessels concentrating weak black liquor to high solids before burning, tall evaporator columns with connecting pipes, steam and condensate system, chemical recovery plant, photorealistic photography",
+    },
+    {
+        "dir": "machines",
+        "file": "lime-kiln.png",
+        "w": 800, "h": 600,
+        "prompt": "Lime kiln at kraft pulp mill chemical recovery, long rotating horizontal cylindrical kiln converting calcium carbonate lime mud back to quicklime at high temperature, lime kiln with firing end flames, chemical recovery cycle, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "causticizer.png",
+        "w": 800, "h": 600,
+        "prompt": "Causticizing plant at kraft pulp mill, row of agitated causticizer tanks where quicklime reacts with green liquor to regenerate white cooking liquor, white liquor clarifier, chemical recovery causticizing process, photorealistic industrial photography",
+    },
+    # --- MACHINES: CONVERTING ADDITIONAL ---
+    {
+        "dir": "machines",
+        "file": "simplex-winder.png",
+        "w": 800, "h": 600,
+        "prompt": "Simplex single-drum winder at paper mill converting, single parent reel unwinding and rewinding onto one set of customer reels simultaneously, basic winding configuration, paper roll converting equipment, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "duplex-winder.png",
+        "w": 800, "h": 600,
+        "prompt": "Duplex winder at paper mill converting department, two sets of finished paper reels being wound simultaneously from single parent reel, dual rewinding stations side by side, high productivity winding configuration, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "triplex-winder.png",
+        "w": 800, "h": 600,
+        "prompt": "Triplex winder at paper mill, three simultaneous sets of paper reels being wound from parent reel at high speed, three rewinding stations operating in parallel, maximum productivity winding configuration at paper converting facility, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "salvage-cutter.png",
+        "w": 800, "h": 600,
+        "prompt": "Salvage cutter at paper mill converting, machine trimming and cutting damaged or defective edges from paper reels, salvage blade removing spoiled surface layers from reel ends, paper roll salvage and reclaim equipment, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "guillotine-cutter.png",
+        "w": 800, "h": 600,
+        "prompt": "Guillotine cutter at paper converting facility, large hydraulic guillotine cutting machine slicing through thick stack of paper sheets with precision blade, heavy-duty paper cutting equipment, paper finishing department, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "core-cutter.png",
+        "w": 800, "h": 600,
+        "prompt": "Core cutter machine at paper mill, automatic cardboard tube core cutting machine slicing long paper cores into precise lengths for paper winding, core manufacturing equipment, paper mill converting ancillary, photorealistic industrial photography",
+    },
+    {
+        "dir": "machines",
+        "file": "roll-wrapper.png",
+        "w": 800, "h": 600,
+        "prompt": "Roll wrapper machine at paper mill packaging line, automatic paper reel wrapping machine applying protective kraft wrapper and end caps to finished paper rolls, roll packaging equipment, finished goods preparation at paper mill, photorealistic industrial photography",
+    },
 ]
 
 

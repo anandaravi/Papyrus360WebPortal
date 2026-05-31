@@ -115,9 +115,16 @@ export default function GlossaryPage() {
             measurements, and trade terminology — curated for mill professionals, traders, and
             procurement teams.
           </p>
-          <p className="text-xs text-text-3 mt-5">
-            {terms.length} terms &middot; Updated 2025
-          </p>
+          <div className="flex flex-wrap gap-4 mt-5 text-xs text-text-3">
+            <span>{terms.length} terms &middot; Updated 2025</span>
+            <span className="text-border">|</span>
+            <Link href="/paper-mill-machines" className="hover:text-amber-400 transition-colors">
+              Paper Mill Machines (visual guide) &rarr;
+            </Link>
+            <Link href="/paper-grades" className="hover:text-amber-400 transition-colors">
+              Paper Grade Guide &rarr;
+            </Link>
+          </div>
         </div>
       </div>
 

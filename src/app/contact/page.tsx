@@ -8,7 +8,7 @@ type FormState = 'idle' | 'submitting' | 'success' | 'error';
 
 const subjects = [
   { value: 'general', label: 'General Enquiry' },
-  { value: 'erp-demo', label: 'ERP Demo (BPApp)' },
+  { value: 'erp-demo', label: 'ERP Demo (Papyrus BP App)' },
   { value: 'consulting', label: 'Process / Compliance Consulting' },
   { value: 'partnership', label: 'Partnership' },
 ];

@@ -2,24 +2,45 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
-import { Menu, X, LogIn } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Menu, X, LogIn, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/cn';
 
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/products', label: 'Products' },
   { href: '/services', label: 'Services' },
-  { href: '/tools', label: 'Tools' },
   { href: '/clients', label: 'Clients' },
   { href: '/blog', label: 'Blog' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
 
+const resourceLinks = [
+  { href: '/tools', label: 'Tools' },
+  { href: '/glossary', label: 'Glossary' },
+  { href: '/paper-grades', label: 'Paper Grades' },
+  { href: '/paper-mill-machines', label: 'Paper Mill Machines' },
+  { href: '/faq', label: 'FAQ' },
+];
+
 export function NavLinks() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
+  const resourcesRef = useRef<HTMLDivElement>(null);
+
+  const resourcesActive = resourceLinks.some((l) => pathname.startsWith(l.href));
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (resourcesRef.current && !resourcesRef.current.contains(e.target as Node)) {
+        setResourcesOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
 
   return (
     <>
@@ -42,6 +63,47 @@ export function NavLinks() {
             </Link>
           );
         })}
+
+        {/* Resources dropdown */}
+        <div ref={resourcesRef} className="relative">
+          <button
+            onClick={() => setResourcesOpen((v) => !v)}
+            className={cn(
+              'flex items-center gap-1 px-3 py-2 text-sm rounded-lg transition-colors duration-200',
+              resourcesActive || resourcesOpen
+                ? 'text-amber-400 bg-amber-500/10'
+                : 'text-text-2 hover:text-foreground hover:bg-surface-2',
+            )}
+          >
+            Resources
+            <ChevronDown
+              size={13}
+              className={cn('transition-transform duration-200', resourcesOpen && 'rotate-180')}
+            />
+          </button>
+          {resourcesOpen && (
+            <div className="absolute top-full left-0 mt-1 w-52 rounded-xl border border-border bg-surface shadow-lg z-50 py-1.5">
+              {resourceLinks.map(({ href, label }) => {
+                const active = pathname.startsWith(href);
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => setResourcesOpen(false)}
+                    className={cn(
+                      'block px-4 py-2 text-sm transition-colors duration-150',
+                      active
+                        ? 'text-amber-400 bg-amber-500/10'
+                        : 'text-text-2 hover:text-foreground hover:bg-surface-2',
+                    )}
+                  >
+                    {label}
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </div>
       </nav>
 
       {/* CTA */}
@@ -83,6 +145,27 @@ export function NavLinks() {
                   onClick={() => setOpen(false)}
                   className={cn(
                     'px-3 py-2.5 text-sm rounded-lg transition-colors duration-200',
+                    active
+                      ? 'text-amber-400 bg-amber-500/10'
+                      : 'text-text-2 hover:text-foreground hover:bg-surface-2',
+                  )}
+                >
+                  {label}
+                </Link>
+              );
+            })}
+            <p className="px-3 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-widest text-text-3">
+              Resources
+            </p>
+            {resourceLinks.map(({ href, label }) => {
+              const active = pathname.startsWith(href);
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  className={cn(
+                    'px-3 py-2.5 text-sm rounded-lg transition-colors duration-200 pl-5',
                     active
                       ? 'text-amber-400 bg-amber-500/10'
                       : 'text-text-2 hover:text-foreground hover:bg-surface-2',

@@ -5,7 +5,7 @@ import { CTABanner } from '@/components/sections/cta-banner';
 export const metadata: Metadata = {
   title: 'FAQ — Paper Industry, ERP & Services | Papyrus360',
   description:
-    'Answers to frequently asked questions about Papyrus360, BPApp ERP, Optrim deckle optimisation, raw material sourcing, and paper industry terminology. 24+ years serving Indian paper mills.',
+    'Answers to frequently asked questions about Papyrus360, BP App ERP, Optrim deckle optimisation, raw material sourcing, and paper industry terminology. 24+ years serving Indian paper mills.',
 };
 
 type FaqItem = {
@@ -42,7 +42,7 @@ const FAQ_DATA: FaqCategory[] = [
       {
         question: 'Do you work with small mills or only large integrated mills?',
         answer:
-          'We serve the full spectrum — from small recycled-fibre mills running a single 50 TPD machine to large integrated operations with multiple machines and captive pulping. BPApp is modular, so a smaller mill can start with core finance and production modules and expand over time. Optrim and Optrim Web are equally useful for small mills where every tonne of trim waste directly impacts margins. We have successfully deployed at mills producing as little as 20 TPD.',
+          'We serve the full spectrum — from small recycled-fibre mills running a single 50 TPD machine to large integrated operations with multiple machines and captive pulping. BP App is modular, so a smaller mill can start with core finance and production modules and expand over time. Optrim and Optrim Web are equally useful for small mills where every tonne of trim waste directly impacts margins. We have successfully deployed at mills producing as little as 20 TPD.',
       },
       {
         question: 'What is the difference between Papyrus360 and Netique Infotech?',
@@ -97,14 +97,14 @@ const FAQ_DATA: FaqCategory[] = [
     label: 'Products & Software',
     items: [
       {
-        question: 'What is BPApp and who is it for?',
+        question: 'What is Papyrus BP App and who is it for?',
         answer:
-          'BPApp (Best Paper App) is Papyrus360\'s flagship cloud ERP system, built specifically for paper mills and board mills. It covers the full mill lifecycle — from raw material procurement through production, quality control, finished goods inventory, sales, logistics, and finance. BPApp is designed for Indian paper mills of all sizes: small recycled-fibre mills, integrated kraft mills, board mills, and converting units. Unlike generic ERPs, every module reflects paper industry workflows, terminology, and compliance requirements out of the box.',
+          'Papyrus BP App (Business Process Application) is Papyrus360\'s flagship cloud ERP system, built specifically for paper mills and board mills. It covers the full mill lifecycle — from raw material procurement through production, quality control, finished goods inventory, sales, logistics, and finance. BP App is designed for Indian paper mills of all sizes: small recycled-fibre mills, integrated kraft mills, board mills, and converting units. Unlike generic ERPs, every module reflects paper industry workflows, terminology, and compliance requirements out of the box.',
       },
       {
-        question: 'What modules does BPApp cover?',
+        question: 'What modules does Papyrus BP App cover?',
         answer:
-          'BPApp comprises 44 integrated modules spanning every function of a paper mill. Key areas include: Raw Material Management (procurement, waste paper grading, pulp inventory), Production Planning and Process Control, Quality Management (lab results, ISO tracking), Finished Goods and Warehouse Management, Sales Order and Dispatch Management, Finance and Accounts (GL, AP, AR), GST, TDS, PF and ESI compliance, HR and Payroll, Maintenance Management, and Management Information System (MIS) dashboards. Because all modules share a single data model, there is no re-entry of data across departments.',
+          'Papyrus BP App comprises 44 integrated modules spanning every function of a paper mill. Key areas include: Raw Material Management (procurement, waste paper grading, pulp inventory), Production Planning and Process Control, Quality Management (lab results, ISO tracking), Finished Goods and Warehouse Management, Sales Order and Dispatch Management, Finance and Accounts (GL, AP, AR), GST, TDS, PF and ESI compliance, HR and Payroll, Maintenance Management, and Management Information System (MIS) dashboards. Because all modules share a single data model, there is no re-entry of data across departments.',
       },
       {
         question: 'What is Optrim / Optrim Web?',
@@ -112,9 +112,9 @@ const FAQ_DATA: FaqCategory[] = [
           'Optrim is Papyrus360\'s deckle optimisation software that calculates the optimal cutting plan for a paper machine reel to minimise trim waste and fulfil the order book efficiently. It has been developed and refined over hundreds of real-world mill deployments. Optrim Web is the browser-based cloud version of the same engine — accessible from any device with a login, requiring no local installation. Both versions allow planners to enter reel widths, order widths, and quantities, and instantly receive the optimised cut plan.',
       },
       {
-        question: 'Can Optrim be used as a standalone tool without BPApp ERP?',
+        question: 'Can Optrim be used as a standalone tool without BP App ERP?',
         answer:
-          'Yes. Optrim and Optrim Web are fully standalone products. Many mills use Optrim independently of BPApp, integrating the cut plans manually or through their existing ERP. If you already have an ERP in place and only need deckle optimisation, you can subscribe to Optrim Web without purchasing BPApp. Conversely, BPApp users benefit from tighter integration where production orders automatically feed into Optrim for planning.',
+          'Yes. Optrim and Optrim Web are fully standalone products. Many mills use Optrim independently of BP App, integrating the cut plans manually or through their existing ERP. If you already have an ERP in place and only need deckle optimisation, you can subscribe to Optrim Web without purchasing BP App. Conversely, BP App users benefit from tighter integration where production orders automatically feed into Optrim for planning.',
       },
       {
         question: 'How quickly can Optrim be deployed?',
@@ -124,12 +124,12 @@ const FAQ_DATA: FaqCategory[] = [
       {
         question: 'Do your products work on mobile devices?',
         answer:
-          'Optrim Web is fully browser-based and works on tablets and smartphones, making it convenient for production planners on the shop floor. BPApp is a web application accessible from any modern browser, including mobile browsers, though the desktop experience is optimised for operational workflows. Key dashboards and approval workflows in BPApp are designed to be accessible on tablets for supervisors and managers who need real-time visibility without being at a desk.',
+          'Optrim Web is fully browser-based and works on tablets and smartphones, making it convenient for production planners on the shop floor. BP App is a web application accessible from any modern browser, including mobile browsers, though the desktop experience is optimised for operational workflows. Key dashboards and approval workflows in BP App are designed to be accessible on tablets for supervisors and managers who need real-time visibility without being at a desk.',
       },
       {
         question: 'Do you offer a free trial or demo?',
         answer:
-          'Yes. We offer product demonstrations for both BPApp and Optrim Web. For BPApp, we conduct a structured demo session (in-person or video call) tailored to your mill type and the modules most relevant to your operation — this typically takes 60–90 minutes. For Optrim Web, we can provide a short-duration trial login so your planning team can evaluate it with real order data. Contact us via the website to schedule a demo at a time that suits you.',
+          'Yes. We offer product demonstrations for both BP App and Optrim Web. For BP App, we conduct a structured demo session (in-person or video call) tailored to your mill type and the modules most relevant to your operation — this typically takes 60–90 minutes. For Optrim Web, we can provide a short-duration trial login so your planning team can evaluate it with real order data. Contact us via the website to schedule a demo at a time that suits you.',
       },
     ],
   },
@@ -169,9 +169,9 @@ const FAQ_DATA: FaqCategory[] = [
     label: 'Implementation & Support',
     items: [
       {
-        question: 'How long does a BPApp ERP implementation take?',
+        question: 'How long does a BP App ERP implementation take?',
         answer:
-          'A typical BPApp implementation for a mid-sized paper mill takes 3 to 6 months from kick-off to go-live, depending on the number of modules deployed, the complexity of existing processes, and the readiness of the mill\'s master data. A phased approach is common — core finance and production modules go live first, followed by quality, HR, and advanced MIS modules in subsequent phases. We assign a dedicated implementation consultant who works closely with your team throughout the process.',
+          'A typical BP App implementation for a mid-sized paper mill takes 3 to 6 months from kick-off to go-live, depending on the number of modules deployed, the complexity of existing processes, and the readiness of the mill\'s master data. A phased approach is common — core finance and production modules go live first, followed by quality, HR, and advanced MIS modules in subsequent phases. We assign a dedicated implementation consultant who works closely with your team throughout the process.',
       },
       {
         question: 'Do you provide on-site support or only remote support?',
@@ -181,22 +181,22 @@ const FAQ_DATA: FaqCategory[] = [
       {
         question: 'What happens after go-live — is there ongoing support?',
         answer:
-          'Yes. All BPApp clients are covered under an Annual Maintenance Contract (AMC) that includes bug fixes, regulatory updates (GST rate changes, TDS rule updates, etc.), and helpdesk support. We proactively release updates to keep BPApp compliant as regulations evolve. Clients can log support requests via phone or email, and our team provides response within agreed SLA windows. We also conduct periodic review calls with larger clients to ensure the system continues to meet their operational needs.',
+          'Yes. All BP App clients are covered under an Annual Maintenance Contract (AMC) that includes bug fixes, regulatory updates (GST rate changes, TDS rule updates, etc.), and helpdesk support. We proactively release updates to keep BP App compliant as regulations evolve. Clients can log support requests via phone or email, and our team provides response within agreed SLA windows. We also conduct periodic review calls with larger clients to ensure the system continues to meet their operational needs.',
       },
       {
-        question: 'Is BPApp compliant with GST, TDS, PF, and ESI requirements?',
+        question: 'Is BP App compliant with GST, TDS, PF, and ESI requirements?',
         answer:
-          'Yes. GST compliance is a core part of BPApp — the system handles CGST, SGST, IGST, input tax credit, reverse charge, and e-invoicing as required by the GST Network. TDS deduction, TCS collection, and Form 26Q / 27Q filing support are built in. PF and ESI calculations follow the current statutory rates and wage definitions, with challan generation and returns handled within the HR and Payroll module. Papyrus360 maintains these modules actively and releases updates whenever statutory requirements change.',
+          'Yes. GST compliance is a core part of BP App — the system handles CGST, SGST, IGST, input tax credit, reverse charge, and e-invoicing as required by the GST Network. TDS deduction, TCS collection, and Form 26Q / 27Q filing support are built in. PF and ESI calculations follow the current statutory rates and wage definitions, with challan generation and returns handled within the HR and Payroll module. Papyrus360 maintains these modules actively and releases updates whenever statutory requirements change.',
       },
       {
-        question: 'Can BPApp integrate with existing weighbridge or lab systems?',
+        question: 'Can BP App integrate with existing weighbridge or lab systems?',
         answer:
-          'Yes. BPApp includes integration interfaces for weighbridge data capture, which is essential for raw material receipt and finished goods dispatch in paper mills. Most modern weighbridge controllers support serial or network data output, and we can configure BPApp to receive and validate weighbridge readings directly, eliminating manual entry and reducing disputes. For laboratory information systems (LIMS), we support data import from standard formats and have integrated with several third-party lab instruments used in Indian paper mills.',
+          'Yes. BP App includes integration interfaces for weighbridge data capture, which is essential for raw material receipt and finished goods dispatch in paper mills. Most modern weighbridge controllers support serial or network data output, and we can configure BP App to receive and validate weighbridge readings directly, eliminating manual entry and reducing disputes. For laboratory information systems (LIMS), we support data import from standard formats and have integrated with several third-party lab instruments used in Indian paper mills.',
       },
       {
         question: 'How is data security handled — is it cloud or on-premise?',
         answer:
-          'BPApp is available in both cloud-hosted and on-premise configurations. The cloud deployment is hosted on secure infrastructure with regular backups, access control, and encrypted data transmission over HTTPS. On-premise deployments give mills full control over their data within their own server environment, which some clients prefer for data sovereignty reasons. Access to BPApp is role-based — each user sees only the data and functions appropriate to their role — and all user actions are logged for audit purposes.',
+          'BP App is available in both cloud-hosted and on-premise configurations. The cloud deployment is hosted on secure infrastructure with regular backups, access control, and encrypted data transmission over HTTPS. On-premise deployments give mills full control over their data within their own server environment, which some clients prefer for data sovereignty reasons. Access to BP App is role-based — each user sees only the data and functions appropriate to their role — and all user actions are logged for audit purposes.',
       },
     ],
   },

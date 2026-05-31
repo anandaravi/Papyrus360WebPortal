@@ -9,7 +9,7 @@ import { CTABanner } from '@/components/sections/cta-banner';
 export const metadata: Metadata = {
   title: 'Products',
   description:
-    'All Papyrus360 products — BPApp ERP, Optrim deckle optimisation, Optrim Web, Papy ERP, PDN Process App, and legacy software for paper mills.',
+    'All Papyrus360 products — Papyrus BP App ERP, Optrim deckle optimisation, Optrim Web, Papy ERP, PDN Process App, and legacy software for paper mills.',
 };
 
 const statusGroups: { status: ProductStatus; label: string; description: string }[] = [

@@ -14,7 +14,7 @@ export type Product = {
 export const products: Product[] = [
   {
     slug: 'bpapp',
-    name: 'BPApp',
+    name: 'Papyrus BP App',
     tagline: 'Enterprise ERP for Paper Manufacturing',
     description:
       'End-to-end ERP covering 44 modules — sales, production, deckle optimisation, finance, HR, compliance, and AI-powered insights. Built for Indian paper mills.',

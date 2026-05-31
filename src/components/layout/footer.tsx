@@ -131,6 +131,7 @@ export function Footer() {
                   { href: '/tools', label: 'Tools' },
                   { href: '/glossary', label: 'Glossary' },
                   { href: '/paper-grades', label: 'Paper Grades' },
+                  { href: '/paper-mill-machines', label: 'Paper Mill Machines' },
                   { href: '/standards', label: 'Testing Standards' },
                 ].map(({ href, label }) => (
                   <li key={href}>
