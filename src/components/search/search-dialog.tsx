@@ -46,39 +46,35 @@ export function SearchDialog() {
   );
 
   const displayed = query ? results : featured;
+  const safeHighlight = displayed.length > 0 ? Math.min(highlight, displayed.length - 1) : 0;
+
+  const openDialog = useCallback(() => {
+    setOpen(true);
+    setQuery("");
+    setHighlight(0);
+    setTimeout(() => inputRef.current?.focus(), 0);
+  }, []);
+
+  const close = useCallback(() => setOpen(false), []);
 
   // Open via ⌘K / Ctrl+K
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        setOpen((o) => !o);
+        if (open) { setOpen(false); } else { openDialog(); }
       } else if (
         e.key === "/" &&
         document.activeElement?.tagName !== "INPUT" &&
         document.activeElement?.tagName !== "TEXTAREA"
       ) {
         e.preventDefault();
-        setOpen(true);
+        openDialog();
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  useEffect(() => {
-    if (open) {
-      setQuery("");
-      setHighlight(0);
-      setTimeout(() => inputRef.current?.focus(), 0);
-    }
-  }, [open]);
-
-  useEffect(() => {
-    if (highlight >= displayed.length) setHighlight(Math.max(0, displayed.length - 1));
-  }, [displayed.length, highlight]);
-
-  const close = useCallback(() => setOpen(false), []);
+  }, [open, openDialog]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Escape") {
@@ -91,7 +87,7 @@ export function SearchDialog() {
       setHighlight((h) => Math.max(h - 1, 0));
     } else if (e.key === "Enter") {
       e.preventDefault();
-      const sel = displayed[highlight];
+      const sel = displayed[safeHighlight];
       if (sel) {
         close();
         if (sel.url.startsWith("http")) {
@@ -104,14 +100,14 @@ export function SearchDialog() {
   };
 
   useEffect(() => {
-    const el = listRef.current?.querySelector(`[data-idx="${highlight}"]`);
+    const el = listRef.current?.querySelector(`[data-idx="${safeHighlight}"]`);
     el?.scrollIntoView({ block: "nearest" });
-  }, [highlight]);
+  }, [safeHighlight]);
 
   return (
     <>
       <button
-        onClick={() => setOpen(true)}
+        onClick={openDialog}
         className="hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border bg-surface/80 hover:border-amber-500/30 hover:bg-amber-500/5 text-text-3 hover:text-text-2 text-xs transition-colors"
         aria-label="Search site"
       >
@@ -122,7 +118,7 @@ export function SearchDialog() {
         </span>
       </button>
       <button
-        onClick={() => setOpen(true)}
+        onClick={openDialog}
         className="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg border border-border bg-surface/80 text-text-2"
         aria-label="Search site"
       >
@@ -188,7 +184,7 @@ export function SearchDialog() {
                       data-idx={i}
                       {...(e.url.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                       className={`flex items-center gap-3 px-5 py-2.5 transition-colors ${
-                        highlight === i
+                        safeHighlight === i
                           ? "bg-amber-500/10 border-l-2 border-amber-500"
                           : "border-l-2 border-transparent hover:bg-surface"
                       }`}
@@ -207,7 +203,7 @@ export function SearchDialog() {
                       <div className="flex-1 min-w-0">
                         <p
                           className={`text-sm font-semibold truncate ${
-                            highlight === i ? "text-amber-300" : "text-foreground"
+                            safeHighlight === i ? "text-amber-300" : "text-foreground"
                           }`}
                         >
                           {e.title}
@@ -217,7 +213,7 @@ export function SearchDialog() {
                       <span className="text-[10px] text-text-4 font-mono truncate hidden sm:inline max-w-[160px]">
                         {e.url}
                       </span>
-                      {highlight === i ? (
+                      {safeHighlight === i ? (
                         <CornerDownLeft size={14} className="text-amber-400 flex-shrink-0" />
                       ) : (
                         <ArrowRight size={14} className="text-zinc-700 flex-shrink-0" />

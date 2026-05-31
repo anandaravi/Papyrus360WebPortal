@@ -657,15 +657,7 @@ function BulkCalculator() {
     const c = parseFloat(caliper);
     const g = parseFloat(gsm);
     if (!c || !g) return;
-    const bulk = (c / 1000) / (g / 1000); // cm³/g: (mm/1000 → cm) / (g/m² / 1000 → g/cm²)
-    // bulk = caliper_cm / (gsm / 10000) = caliper_mm * 10 / gsm
-    const bulkVal = (c * 10) / g; // cm³/g
-    const ppi = 25.4 / c; // pages per mm if caliper in μm... wait
-    // caliper is in μm here (standard unit from the caliper converter)
-    // bulk (cm³/g) = caliper(cm) / (GSM g/m²) × 10000
-    // = (caliper_μm / 10000) / (GSM / 10000) = caliper_μm / GSM
-    const bulkCmg = c / g; // when caliper in μm, bulk = μm/gsm (dimensionless ratio that equals cm³/g)
-    const pagesPerMm = 1000 / c; // pages per mm of book thickness (single sheet = 2 pages, so book pages = 2000/caliper_μm * 1mm)
+    const bulkCmg = c / g;
     const sheetsPerMm = 1000 / c;
     setResults([
       { label: 'Bulk', value: `${fmt(bulkCmg, 4)} cm³/g` },
@@ -918,8 +910,8 @@ function PaperSizesReference() {
                     <td className="px-4 py-2.5 font-medium text-foreground">{sz.name}</td>
                     <td className="px-4 py-2.5 tabular-nums text-text-2">{sz.w}</td>
                     <td className="px-4 py-2.5 tabular-nums text-text-2">{sz.h}</td>
-                    <td className="px-4 py-2.5 tabular-nums text-text-3">{mmToInch(sz.w)}"</td>
-                    <td className="px-4 py-2.5 tabular-nums text-text-3">{mmToInch(sz.h)}"</td>
+                    <td className="px-4 py-2.5 tabular-nums text-text-3">{mmToInch(sz.w)}&quot;</td>
+                    <td className="px-4 py-2.5 tabular-nums text-text-3">{mmToInch(sz.h)}&quot;</td>
                     <td className="px-4 py-2.5 text-xs text-text-3 hidden md:table-cell">{sz.note ?? '—'}</td>
                   </tr>
                 ))}

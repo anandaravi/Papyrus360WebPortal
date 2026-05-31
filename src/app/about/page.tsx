@@ -164,7 +164,7 @@ export default function AboutPage() {
     </div>
     <CTABanner
       eyebrow="Ready to talk?"
-      title={<>Let's discuss<br />your mill.</>}
+      title={<>Let&apos;s discuss<br />your mill.</>}
       subtitle="Whether you're evaluating ERP, need deckle optimisation, or want to discuss compliance consulting — we're here."
       primaryLabel="Contact Us"
     />

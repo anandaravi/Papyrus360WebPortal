@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { Plus, Trash2, Scissors, AlertCircle } from 'lucide-react';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -173,16 +173,6 @@ const PIECE_COLORS = [
   'bg-indigo-500 text-white',
 ];
 
-const PIECE_BORDER_COLORS = [
-  'border-amber-500/60',
-  'border-sky-500/60',
-  'border-emerald-500/60',
-  'border-violet-500/60',
-  'border-rose-500/60',
-  'border-orange-400/60',
-  'border-teal-500/60',
-  'border-indigo-500/60',
-];
 
 // ─── Visual Pattern Bar ───────────────────────────────────────────────────────
 
@@ -266,11 +256,7 @@ function randomSamples(): OrderRow[] {
 export function DeckleClient() {
   const [deckle, setDeckle] = useState('4200');
   const [knives, setKnives] = useState('8');
-  const [orders, setOrders] = useState<OrderRow[]>([newRow(), newRow(), newRow(), newRow()]);
-
-  useEffect(() => {
-    setOrders(randomSamples());
-  }, []);
+  const [orders, setOrders] = useState<OrderRow[]>(() => randomSamples());
   const [solution, setSolution] = useState<SolutionRow[] | null>(null);
   const [demands, setDemands] = useState<Record<number, number>>({});
   const [error, setError] = useState('');

@@ -15,7 +15,6 @@ export function NewsletterForm({ source = "footer" }: { source?: string }) {
     setStatus("loading");
     try {
       // TODO: wire to /api/subscribe (Resend audience or similar). For now: console log.
-      // eslint-disable-next-line no-console
       console.log("[newsletter] subscribe", { email, source });
       await new Promise((r) => setTimeout(r, 400));
       setStatus("success");

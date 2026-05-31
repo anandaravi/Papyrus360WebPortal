@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
+import Link from 'next/link';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { PageHero } from '@/components/ui/page-hero';
 
@@ -56,12 +57,12 @@ export default function ContactPage() {
         <p className="text-text-2 mb-8">
           Thank you for reaching out. We&apos;ll get back to you within one business day.
         </p>
-        <a
+        <Link
           href="/"
           className="inline-flex items-center gap-2 text-sm text-amber-400 hover:text-amber-300 transition-colors"
         >
           Back to home <ArrowRight size={14} />
-        </a>
+        </Link>
       </div>
     );
   }

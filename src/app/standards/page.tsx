@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { CTABanner } from '@/components/sections/cta-banner';
 
 export const metadata: Metadata = {
