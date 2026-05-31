@@ -2,12 +2,6 @@
   "framework": "nextjs",
   "redirects": [
     {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.papyrus360.com" }],
-      "destination": "https://papyrus360.com/:path*",
-      "permanent": true
-    },
-    {
       "source": "/360/:path*",
       "destination": "/",
       "permanent": true
