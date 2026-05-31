@@ -6,6 +6,7 @@ import { services } from '@/lib/services';
 import { StatsBar } from '@/components/sections/stats-bar';
 import { ComplianceStrip } from '@/components/sections/compliance-strip';
 import { CTABanner } from '@/components/sections/cta-banner';
+import { FadeIn } from '@/components/ui/fade-in';
 
 const activeProducts = products.filter((p) => p.status !== 'legacy');
 
@@ -48,7 +49,7 @@ export default function HomePage() {
           sizes="100vw"
         />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 md:py-36 relative">
-          <div className="max-w-3xl">
+          <FadeIn className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-4">
               Netique Infotech Pvt Ltd. · Est. 2002 · 24+ years in operation
             </p>
@@ -75,7 +76,7 @@ export default function HomePage() {
                 Start a Conversation
               </Link>
             </div>
-          </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -84,16 +85,17 @@ export default function HomePage() {
       {/* Products */}
       <section className="py-20 border-b border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
+          <FadeIn className="mb-12">
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-2">
               Products
             </p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
               Software built for paper mills
             </h2>
-          </div>
+          </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {activeProducts.map((product) => (
+            {activeProducts.map((product, i) => (
+              <FadeIn key={product.slug} delay={i * 80}>
               <Link
                 key={product.slug}
                 href={`/products/${product.slug}`}
@@ -123,6 +125,7 @@ export default function HomePage() {
                   Learn more <ArrowRight size={12} />
                 </span>
               </Link>
+              </FadeIn>
             ))}
           </div>
           <div className="mt-8 text-center">
@@ -139,16 +142,17 @@ export default function HomePage() {
       {/* Services */}
       <section className="py-20 border-b border-border bg-surface">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
+          <FadeIn className="mb-12">
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-2">
               Services
             </p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
               End-to-end engagement
             </h2>
-          </div>
+          </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {services.map((service) => (
+            {services.map((service, i) => (
+              <FadeIn key={service.slug} delay={i * 80}>
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
@@ -182,6 +186,7 @@ export default function HomePage() {
                 </ul>
                 </div>
               </Link>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -191,7 +196,7 @@ export default function HomePage() {
       <section className="py-20 border-b border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+            <FadeIn className="relative aspect-[4/3] rounded-2xl overflow-hidden">
               <Image
                 src="/images/services/raw-material-import-export.png"
                 alt="Waste paper and woodchip imports for Indian paper mills"
@@ -200,8 +205,8 @@ export default function HomePage() {
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-background/40 via-transparent to-transparent" />
-            </div>
-            <div>
+            </FadeIn>
+            <FadeIn delay={150}>
               <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
                 Raw Material Supply
               </p>
@@ -241,7 +246,7 @@ export default function HomePage() {
               >
                 Explore sourcing services <ArrowRight size={14} />
               </Link>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -249,17 +254,17 @@ export default function HomePage() {
       {/* Why Papyrus360 */}
       <section className="py-20 border-b border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
+          <FadeIn className="mb-12">
             <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-2">
               Why Papyrus360
             </p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
               Built different. For paper mills.
             </h2>
-          </div>
+          </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {trustPoints.map((point) => (
-              <div key={point.title} className="flex flex-col gap-3">
+            {trustPoints.map((point, i) => (
+              <FadeIn key={point.title} delay={i * 100} className="flex flex-col gap-3">
                 <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden mb-2">
                   <Image
                     src={point.image}
@@ -272,7 +277,7 @@ export default function HomePage() {
                 <div className="w-8 h-0.5 bg-amber-500" />
                 <h3 className="text-lg font-semibold">{point.title}</h3>
                 <p className="text-sm text-text-2 leading-relaxed">{point.description}</p>
-              </div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -282,7 +287,7 @@ export default function HomePage() {
 
       {/* Clients */}
       <section className="py-16 border-b border-border bg-surface">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+        <FadeIn className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-text-3 mb-4">
             Clients
           </p>
@@ -293,7 +298,7 @@ export default function HomePage() {
             From small converters to large integrated paper mills — our software runs at
             facilities across Tamil Nadu, Karnataka, Maharashtra, and beyond.
           </p>
-        </div>
+        </FadeIn>
       </section>
 
       <CTABanner

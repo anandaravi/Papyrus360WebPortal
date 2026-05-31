@@ -134,6 +134,16 @@ export default function TeamPage() {
         </div>
       </div>
 
+      {/* Placeholder notice */}
+      <div className="border-b border-amber-500/20 bg-amber-500/5">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-2">
+          <span className="text-amber-400 text-xs">⚠</span>
+          <p className="text-xs text-amber-400/80">
+            Team profiles coming soon — names and details on this page are illustrative placeholders until updated with real team information.
+          </p>
+        </div>
+      </div>
+
       {/* Why our team is different */}
       <div className="border-b border-border bg-surface">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
