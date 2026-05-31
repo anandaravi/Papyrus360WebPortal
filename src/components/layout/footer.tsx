@@ -54,7 +54,7 @@ export function Footer() {
           </div>
 
           {/* Nav columns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
             <div>
               <h3 className="text-xs font-semibold uppercase tracking-widest text-amber-500 mb-3">
                 Company
@@ -119,6 +119,29 @@ export function Footer() {
                     +{services.length - 7} more →
                   </Link>
                 </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-widest text-amber-500 mb-3">
+                Resources
+              </h3>
+              <ul className="space-y-2">
+                {[
+                  { href: '/tools', label: 'Tools' },
+                  { href: '/glossary', label: 'Glossary' },
+                  { href: '/paper-grades', label: 'Paper Grades' },
+                  { href: '/standards', label: 'Testing Standards' },
+                ].map(({ href, label }) => (
+                  <li key={href}>
+                    <Link
+                      href={href}
+                      className="text-sm text-text-2 hover:text-amber-400 transition-colors duration-200"
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 

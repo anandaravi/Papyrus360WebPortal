@@ -53,6 +53,7 @@ export function CTABanner({
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href={primaryHref}
+              {...(primaryHref.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-bold text-sm transition-all duration-200"
             >
               {primaryLabel}
