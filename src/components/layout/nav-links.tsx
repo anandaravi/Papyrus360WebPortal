@@ -18,6 +18,7 @@ const navLinks = [
 
 const resourceLinks = [
   { href: '/tools', label: 'Tools' },
+  { href: '/tools/deckle-optimizer', label: 'Deckle Optimizer' },
   { href: '/glossary', label: 'Glossary' },
   { href: '/paper-grades', label: 'Paper Grades' },
   { href: '/paper-mill-machines', label: 'Paper Mill Machines' },
