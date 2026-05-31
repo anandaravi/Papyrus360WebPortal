@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { StatsBar } from '@/components/sections/stats-bar';
 import { CTABanner } from '@/components/sections/cta-banner';
 
@@ -139,6 +140,27 @@ export default function AboutPage() {
         </div>
       </div>
 
+    </div>
+
+    {/* Meet the Team */}
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+      <div className="rounded-2xl border border-border bg-surface-2 px-8 py-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-2">
+            Meet the Team
+          </p>
+          <h2 className="text-2xl font-bold mb-1">The people behind Papyrus360.</h2>
+          <p className="text-sm text-text-2">
+            Mill veterans, ERP architects, and compliance specialists — all under one roof.
+          </p>
+        </div>
+        <Link
+          href="/team"
+          className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-amber-500 px-5 py-2.5 text-sm font-bold text-black hover:bg-amber-400 transition-colors"
+        >
+          View the team
+        </Link>
+      </div>
     </div>
     <CTABanner
       eyebrow="Ready to talk?"
