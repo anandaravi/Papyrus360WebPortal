@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useCallback } from 'react';
-import { Plus, Trash2, Scissors, AlertCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { useState, useCallback, useEffect } from 'react';
+import { Plus, Trash2, Scissors, AlertCircle } from 'lucide-react';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -27,6 +27,8 @@ interface SolutionRow {
 
 // ─── Algorithm ───────────────────────────────────────────────────────────────
 
+const MIN_UTILISATION = 0.80; // patterns below 80% deckle use are rejected
+
 function generatePatterns(
   uniqueWidths: number[],
   deckle: number,
@@ -34,14 +36,20 @@ function generatePatterns(
 ): Pattern[] {
   const results: Pattern[] = [];
   const sorted = [...uniqueWidths].sort((a, b) => a - b);
+  const minSum = deckle * MIN_UTILISATION;
+  const minWidth = sorted[0]; // smallest demanded width = max allowable trim
 
   function recurse(current: number[], startIdx: number) {
     if (current.length > 0) {
       const sum = current.reduce((a, b) => a + b, 0);
       const trim = deckle - sum;
-      const counts: Record<number, number> = {};
-      for (const w of current) counts[w] = (counts[w] ?? 0) + 1;
-      results.push({ pieces: [...current].sort((a, b) => a - b), counts, sum, trim, trimPct: (trim / deckle) * 100 });
+      // Reject: below 80% utilisation OR trim >= smallest demanded width
+      // (trim >= minWidth means another piece could have fit)
+      if (sum >= minSum && trim < minWidth) {
+        const counts: Record<number, number> = {};
+        for (const w of current) counts[w] = (counts[w] ?? 0) + 1;
+        results.push({ pieces: [...current].sort((a, b) => a - b), counts, sum, trim, trimPct: (trim / deckle) * 100 });
+      }
     }
     if (current.length >= maxKnives) return;
     const currentSum = current.reduce((a, b) => a + b, 0);
@@ -56,72 +64,97 @@ function generatePatterns(
   return results;
 }
 
+const MAX_EXCESS_RATIO = 1.10; // total produced per width ≤ demand × 110%
+
 function solve(
   patterns: Pattern[],
   demands: Record<number, number>,
 ): SolutionRow[] {
   const remaining = { ...demands };
+  // Track total produced per width across all runs to enforce the 110% cap
+  const totalProduced: Record<number, number> = {};
   const solution: SolutionRow[] = [];
   const MAX_ITER = 500;
   let iter = 0;
 
-  while (iter++ < MAX_ITER) {
-    const anyLeft = Object.values(remaining).some((d) => d > 0);
-    if (!anyLeft) break;
+  const mergeIntoSolution = (pat: Pattern, runs: number, useful: Record<number, number>) => {
+    const key = JSON.stringify(pat.pieces);
+    const idx = solution.findIndex((r) => JSON.stringify(r.pattern.pieces) === key);
+    if (idx >= 0) {
+      solution[idx].sets += runs;
+      for (const [wStr, u] of Object.entries(useful)) {
+        const w = Number(wStr);
+        solution[idx].useful[w] = (solution[idx].useful[w] ?? 0) + u;
+      }
+    } else {
+      solution.push({ pattern: pat, sets: runs, useful });
+    }
+  };
 
-    // Score each pattern: useful pieces = sum of min(count, remaining demand) for each width
+  // Max additional runs a pattern can take before breaching 110% cap for any width
+  const maxRunsByCap = (pat: Pattern): number => {
+    let cap = Infinity;
+    for (const [wStr, cnt] of Object.entries(pat.counts)) {
+      const w = Number(wStr);
+      const allowed = Math.floor((demands[w] * MAX_EXCESS_RATIO - (totalProduced[w] ?? 0)) / cnt);
+      cap = Math.min(cap, Math.max(0, allowed));
+    }
+    return isFinite(cap) ? cap : 0;
+  };
+
+  while (iter++ < MAX_ITER) {
+    if (Object.values(remaining).every((d) => d <= 0)) break;
+
+    const deckleWidth = patterns.reduce((max, p) => Math.max(max, p.sum + p.trim), 1);
     let bestPattern: Pattern | null = null;
-    let bestScore = -1;
-    let bestTrim = Infinity;
+    let bestScore = -Infinity;
 
     for (const pat of patterns) {
-      let score = 0;
+      // Skip patterns that have already hit the 110% cap on any width
+      if (maxRunsByCap(pat) === 0) continue;
+
+      let useful = 0;
+      let excess = 0;
       for (const [wStr, cnt] of Object.entries(pat.counts)) {
         const w = Number(wStr);
-        score += Math.min(cnt, remaining[w] ?? 0);
+        const rem = remaining[w] ?? 0;
+        useful += Math.min(cnt, rem);
+        excess += Math.max(0, cnt - rem);
       }
-      if (score > bestScore || (score === bestScore && pat.trim < bestTrim)) {
+      const trimPenalty = pat.trim / deckleWidth;
+      const score = useful - 0.5 * excess - trimPenalty;
+      if (score > bestScore) {
         bestScore = score;
-        bestTrim = pat.trim;
         bestPattern = pat;
       }
     }
 
-    if (!bestPattern || bestScore === 0) break;
+    if (!bestPattern || bestScore <= 0) break;
 
-    // How many times to run: limited by the most constrained useful width
-    let runs = Infinity;
+    // ── Run count ────────────────────────────────────────────────────────────
+    // Lower of: floor-bulk runs (zero excess) and 110%-cap ceiling.
+    let bulkRuns = Infinity;
     for (const [wStr, cnt] of Object.entries(bestPattern.counts)) {
       const w = Number(wStr);
-      if ((remaining[w] ?? 0) > 0) {
-        runs = Math.min(runs, Math.ceil((remaining[w] ?? 0) / cnt));
-      }
+      const rem = remaining[w] ?? 0;
+      if (rem >= cnt) bulkRuns = Math.min(bulkRuns, Math.floor(rem / cnt));
     }
-    if (!isFinite(runs) || runs <= 0) runs = 1;
+    const capRuns = maxRunsByCap(bestPattern);
+    const runs = Math.min(isFinite(bulkRuns) && bulkRuns > 0 ? bulkRuns : 1, capRuns);
+    if (runs <= 0) break;
 
-    // Record useful production
+    // Apply
     const useful: Record<number, number> = {};
     for (const [wStr, cnt] of Object.entries(bestPattern.counts)) {
       const w = Number(wStr);
       const produced = cnt * runs;
+      totalProduced[w] = (totalProduced[w] ?? 0) + produced;
       const actualUseful = Math.min(produced, remaining[w] ?? 0);
       useful[w] = actualUseful;
       remaining[w] = Math.max(0, (remaining[w] ?? 0) - produced);
     }
 
-    // Merge into existing solution row if same pattern
-    const existingIdx = solution.findIndex(
-      (r) => JSON.stringify(r.pattern.pieces) === JSON.stringify(bestPattern!.pieces),
-    );
-    if (existingIdx >= 0) {
-      solution[existingIdx].sets += runs;
-      for (const [wStr, u] of Object.entries(useful)) {
-        const w = Number(wStr);
-        solution[existingIdx].useful[w] = (solution[existingIdx].useful[w] ?? 0) + u;
-      }
-    } else {
-      solution.push({ pattern: bestPattern, sets: runs, useful });
-    }
+    mergeIntoSolution(bestPattern, runs, useful);
   }
 
   return solution;
@@ -218,19 +251,45 @@ function KnifePositions({ pattern }: { pattern: Pattern }) {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 let _id = 0;
-const newRow = (): OrderRow => ({ id: ++_id, width: '', demand: '' });
+const newRow = (width = '', demand = ''): OrderRow => ({ id: ++_id, width, demand });
+
+// Pool of plausible mill widths — 450 mm to 1200 mm in 50 mm steps
+const WIDTH_POOL = [450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950,
+  1000, 1050, 1100, 1150, 1200];
+
+function randomSamples(): OrderRow[] {
+  const pool = [...WIDTH_POOL].sort(() => Math.random() - 0.5).slice(0, 4);
+  pool.sort((a, b) => a - b);
+  return pool.map((w) => newRow(String(w), String(Math.floor(Math.random() * 25 + 5) * 5)));
+}
 
 export function DeckleClient() {
   const [deckle, setDeckle] = useState('4200');
-  const [knives, setKnives] = useState('6');
-  const [orders, setOrders] = useState<OrderRow[]>([newRow(), newRow()]);
-  const [solution, setSolution] = useState<SolutionRow[] | null>(null);
-  const [error, setError] = useState('');
-  const [showAllPatterns, setShowAllPatterns] = useState(false);
-  const [allPatterns, setAllPatterns] = useState<Pattern[]>([]);
-  const [colorMap, setColorMap] = useState<Record<number, number>>({});
+  const [knives, setKnives] = useState('8');
+  const [orders, setOrders] = useState<OrderRow[]>([newRow(), newRow(), newRow(), newRow()]);
 
-  const addOrder = () => setOrders((o) => o.length < 10 ? [...o, newRow()] : o);
+  useEffect(() => {
+    setOrders(randomSamples());
+  }, []);
+  const [solution, setSolution] = useState<SolutionRow[] | null>(null);
+  const [demands, setDemands] = useState<Record<number, number>>({});
+  const [error, setError] = useState('');
+  const [colorMap, setColorMap] = useState<Record<number, number>>({});
+  const [patternsOpen, setPatternsOpen] = useState(false);
+
+  const addOrder = () => setOrders((o) => {
+    if (o.length >= 10) return o;
+    const used = new Set(o.map((r) => r.width));
+    const candidates: number[] = [];
+    for (let w = 400; w <= 800; w += 10) {
+      if (!used.has(String(w))) candidates.push(w);
+    }
+    const width = candidates.length > 0
+      ? String(candidates[Math.floor(Math.random() * candidates.length)])
+      : '';
+    const demand = String(Math.floor(Math.random() * 10 + 1) * 10); // 10–100 in multiples of 10
+    return [...o, newRow(width, demand)];
+  });
   const removeOrder = (id: number) => setOrders((o) => o.filter((r) => r.id !== id));
   const updateOrder = (id: number, field: 'width' | 'demand', val: string) =>
     setOrders((o) => o.map((r) => (r.id === id ? { ...r, [field]: val } : r)));
@@ -238,7 +297,7 @@ export function DeckleClient() {
   const run = useCallback(() => {
     setError('');
     setSolution(null);
-    setAllPatterns([]);
+    setDemands({});
 
     const d = parseFloat(deckle);
     const k = parseInt(knives);
@@ -250,6 +309,7 @@ export function DeckleClient() {
       .filter((r) => r.width > 0 && r.demand > 0);
 
     if (validOrders.length === 0) return setError('Add at least one order with width and demand.');
+    if (validOrders.length > 10) return setError('Maximum 10 order widths allowed.');
 
     const tooWide = validOrders.find((r) => r.width > d);
     if (tooWide) return setError(`Width ${tooWide.width} mm exceeds deckle ${d} mm.`);
@@ -264,13 +324,12 @@ export function DeckleClient() {
     const cm: Record<number, number> = {};
     uniqueWidths.forEach((w, i) => { cm[w] = i; });
     setColorMap(cm);
+    setDemands(demands);
 
     const patterns = generatePatterns(uniqueWidths, d, k);
-    if (patterns.length === 0) return setError('No valid patterns found. Check that widths fit within deckle.');
+    if (patterns.length === 0) return setError(`No patterns reach 80% deckle utilisation (≥${Math.round(d * MIN_UTILISATION)} mm). Add wider widths or reduce deckle.`);
 
-    // Sort patterns by trim asc
     patterns.sort((a, b) => a.trim - b.trim);
-    setAllPatterns(patterns);
 
     const sol = solve(patterns, demands);
     if (sol.length === 0) return setError('No solution found.');
@@ -453,8 +512,27 @@ export function DeckleClient() {
           </div>
 
           {/* Pattern cards */}
-          <div>
-            <h2 className="text-xl font-bold mb-4">Slitter Patterns</h2>
+          <div className="rounded-2xl border border-border bg-surface overflow-hidden">
+            <button
+              onClick={() => setPatternsOpen((v) => !v)}
+              className="w-full flex items-center justify-between px-5 py-4 hover:bg-surface-2 transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <h2 className="text-base font-semibold text-foreground">Slitter Patterns</h2>
+                <span className="text-xs text-text-3 bg-surface-2 border border-border rounded-full px-2 py-0.5">
+                  {solution.length} pattern{solution.length !== 1 ? 's' : ''} · {totalSets} sets
+                </span>
+              </div>
+              <svg
+                className={`w-4 h-4 text-text-3 transition-transform ${patternsOpen ? 'rotate-180' : ''}`}
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {patternsOpen && (
+            <div className="border-t border-border p-5 space-y-4">
             <div className="space-y-4">
               {solution.map((row, i) => {
                 const excess = Object.entries(row.pattern.counts)
@@ -575,68 +653,84 @@ export function DeckleClient() {
                 );
               })}
             </div>
+            </div>
+            )}
           </div>
 
-          {/* All patterns toggle */}
-          {allPatterns.length > 0 && (
-            <div className="rounded-2xl border border-border bg-surface overflow-hidden">
-              <button
-                className="w-full flex items-center justify-between px-5 py-4 text-sm font-semibold text-foreground hover:bg-surface-2 transition-colors"
-                onClick={() => setShowAllPatterns((v) => !v)}
-              >
-                <span>
-                  All Valid Patterns ({allPatterns.length} total)
-                </span>
-                {showAllPatterns ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-              </button>
-
-              {showAllPatterns && (
-                <div className="border-t border-border overflow-x-auto">
+          {/* Demand & Fulfillment */}
+          {Object.keys(demands).length > 0 && (
+            <div>
+              <h2 className="text-xl font-bold mb-4">Demand &amp; Fulfillment</h2>
+              <div className="rounded-2xl border border-border bg-surface overflow-hidden">
+                <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="border-b border-border text-left bg-surface-2">
-                        <th className="px-4 py-2.5 text-xs font-semibold text-text-3 uppercase tracking-wide">#</th>
-                        <th className="px-4 py-2.5 text-xs font-semibold text-text-3 uppercase tracking-wide">Widths (mm)</th>
-                        <th className="px-4 py-2.5 text-xs font-semibold text-text-3 uppercase tracking-wide">Sum</th>
-                        <th className="px-4 py-2.5 text-xs font-semibold text-text-3 uppercase tracking-wide">Trim</th>
-                        <th className="px-4 py-2.5 text-xs font-semibold text-text-3 uppercase tracking-wide">Trim %</th>
-                        <th className="px-4 py-2.5 text-xs font-semibold text-text-3 uppercase tracking-wide">Knife Positions</th>
+                      <tr className="border-b border-border bg-surface-2">
+                        <th className="px-4 py-3 text-left text-xs font-semibold text-text-3 uppercase tracking-wide">Width</th>
+                        <th className="px-4 py-3 text-right text-xs font-semibold text-text-3 uppercase tracking-wide">Demanded</th>
+                        <th className="px-4 py-3 text-right text-xs font-semibold text-text-3 uppercase tracking-wide">Produced</th>
+                        <th className="px-4 py-3 text-right text-xs font-semibold text-text-3 uppercase tracking-wide">Fulfilled</th>
+                        <th className="px-4 py-3 text-right text-xs font-semibold text-text-3 uppercase tracking-wide">Excess</th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold text-text-3 uppercase tracking-wide min-w-[140px]">Fulfillment</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {allPatterns.map((pat, i) => (
-                        <tr key={i} className="border-b border-border/50 hover:bg-surface-2 transition-colors">
-                          <td className="px-4 py-2.5 tabular-nums text-text-3">{i + 1}</td>
-                          <td className="px-4 py-2.5">
-                            <div className="flex flex-wrap gap-1">
-                              {Object.entries(pat.counts).map(([wStr, cnt]) => {
-                                const w = Number(wStr);
-                                const colorIdx = (colorMap[w] ?? 0) % PIECE_COLORS.length;
-                                return (
-                                  <span
-                                    key={w}
-                                    className={`text-xs px-1.5 py-0.5 rounded font-bold ${PIECE_COLORS[colorIdx]}`}
-                                  >
-                                    {cnt > 1 ? `${cnt}×` : ''}{w}
+                      {Object.entries(demands).map(([wStr, demanded]) => {
+                        const w = Number(wStr);
+                        const colorIdx = (colorMap[w] ?? 0) % PIECE_COLORS.length;
+                        const produced = solution!.reduce((acc, r) => acc + (r.pattern.counts[w] ?? 0) * r.sets, 0);
+                        const fulfilled = solution!.reduce((acc, r) => acc + (r.useful[w] ?? 0), 0);
+                        const excess = produced - fulfilled;
+                        const pct = Math.min((fulfilled / demanded) * 100, 100);
+                        const isCritical = pct < 90;
+                        const isShort = pct < 100;
+                        const barColor = isCritical ? 'bg-rose-500' : isShort ? 'bg-amber-500' : 'bg-emerald-500';
+                        const textColor = isCritical ? 'text-rose-400' : isShort ? 'text-amber-400' : 'text-emerald-400';
+                        return (
+                          <tr key={w} className="border-b border-border/50">
+                            <td className="px-4 py-3">
+                              <div className="flex items-center gap-2">
+                                <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-bold ${PIECE_COLORS[colorIdx]}`}>
+                                  {w} mm
+                                </span>
+                                {isCritical && (
+                                  <span className="text-[10px] font-semibold text-rose-400 bg-rose-500/10 border border-rose-500/20 rounded px-1.5 py-0.5">
+                                    &lt;90%
                                   </span>
-                                );
-                              })}
-                            </div>
-                          </td>
-                          <td className="px-4 py-2.5 tabular-nums text-text-2">{pat.sum}</td>
-                          <td className="px-4 py-2.5 tabular-nums text-text-2">{pat.trim}</td>
-                          <td className={`px-4 py-2.5 tabular-nums font-medium ${pat.trimPct < 2 ? 'text-emerald-400' : pat.trimPct < 5 ? 'text-amber-400' : 'text-rose-400'}`}>
-                            {pat.trimPct.toFixed(1)}%
-                          </td>
-                          <td className="px-4 py-2.5 font-mono text-xs text-text-3">
-                            <KnifePositions pattern={pat} />
-                          </td>
-                        </tr>
-                      ))}
+                                )}
+                              </div>
+                            </td>
+                            <td className="px-4 py-3 tabular-nums text-right text-foreground">{demanded}</td>
+                            <td className="px-4 py-3 tabular-nums text-right text-foreground">{produced}</td>
+                            <td className={`px-4 py-3 tabular-nums text-right font-semibold ${textColor}`}>
+                              {fulfilled}
+                            </td>
+                            <td className="px-4 py-3 tabular-nums text-right text-text-2">
+                              {excess > 0 ? `+${excess}` : '—'}
+                            </td>
+                            <td className="px-4 py-3">
+                              <div className="flex items-center gap-2">
+                                <div className="flex-1 h-2 rounded-full bg-surface-3 overflow-hidden">
+                                  <div
+                                    className={`h-full rounded-full transition-all ${barColor}`}
+                                    style={{ width: `${pct}%` }}
+                                  />
+                                </div>
+                                <span className={`text-xs tabular-nums font-medium w-10 text-right ${textColor}`}>
+                                  {Math.floor(pct)}%
+                                </span>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
-              )}
+                <div className="px-4 py-3 border-t border-border bg-surface-2/60 text-xs text-text-4">
+                  Target: ≥90% fulfillment per width. Amber = short but ≥90%. Red badge = below 90% — adjust order mix or increase knife count.
+                </div>
+              </div>
             </div>
           )}
         </div>
@@ -654,6 +748,7 @@ export function DeckleClient() {
         <ul className="text-sm text-text-3 space-y-1 list-disc list-inside">
           <li>Knife positions show cumulative widths from the operator side</li>
           <li>Excess reels are produced when demand is not divisible evenly</li>
+          <li>Only patterns using ≥80% of deckle width are considered — patterns below that threshold are discarded</li>
           <li>Green trim (&lt;2%) is excellent; amber (2–5%) is typical; red (&gt;5%) review order mix</li>
         </ul>
       </div>

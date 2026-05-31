@@ -79,6 +79,12 @@ const COMPARISON = [
     bpapp: true,
   },
   {
+    feature: 'MILP-based solver (mathematically optimal patterns)',
+    free: false,
+    optrim: true,
+    bpapp: true,
+  },
+  {
     feature: 'Printable knife-setting sheets for operators',
     free: false,
     optrim: true,
