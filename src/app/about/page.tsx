@@ -1,14 +1,15 @@
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { StatsBar } from '@/components/sections/stats-bar';
 import { CTABanner } from '@/components/sections/cta-banner';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: 'About',
+  path: '/about',
   description:
     'Papyrus360 is the brand of Netique Infotech Pvt Ltd. — 24+ years in operation, founded by domain experts with 35+ years of paper industry experience. Software products and consultancy for paper manufacturers.',
-};
+});
 
 const milestones = [
   { year: '2002', event: 'Netique Infotech Pvt Ltd. incorporated (CIN: U72200TN2002PTC049220) — Papyrus360 brand, 360-degree services for paper industry' },

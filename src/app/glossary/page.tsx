@@ -1,9 +1,10 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CTABanner } from '@/components/sections/cta-banner';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Paper Industry Glossary — Key Terms & Definitions | Papyrus360',
+export const metadata = pageMeta({
+  title: 'Paper Industry Glossary — Key Terms & Definitions',
+  path: '/glossary',
   description:
     'A comprehensive A–Z glossary of paper industry terminology covering pulp chemistry, papermaking processes, paper grades, quality measurements, and trade terms. Reference guide for mill managers, traders, and procurement teams.',
   keywords: [
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     'basis weight definition',
     'paper industry reference',
   ],
-};
+});
 
 const terms = [
   { term: 'Absorbency', definition: 'Ability of paper to absorb liquids such as water and ink. Measured by the Cobb test (IS 1060). Critical for inkjet papers and packaging grades.' },

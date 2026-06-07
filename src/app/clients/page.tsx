@@ -1,15 +1,16 @@
-import type { Metadata } from 'next';
 import { Quote, MapPin, CheckCircle2 } from 'lucide-react';
 import { CLIENTS } from '@/lib/clients';
 import { MapLoader } from '@/components/clients/map-loader';
 import { PageHero } from '@/components/ui/page-hero';
 import { CTABanner } from '@/components/sections/cta-banner';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: 'Clients',
+  path: '/clients',
   description:
     '38 paper mills across India and the Gulf trust Papyrus360 software — spanning kraft, board, newsprint, tissue, and writing & printing grades since 2002.',
-};
+});
 
 const indiaCount = CLIENTS.filter((c) => c.country === 'India').length;
 const intlCount = CLIENTS.filter((c) => c.country !== 'India').length;

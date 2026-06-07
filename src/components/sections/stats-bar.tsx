@@ -16,15 +16,18 @@ function parseValue(v: string) {
 
 function StatCounter({ value }: { value: string }) {
   const { end, suffix } = parseValue(value);
-  const [count, setCount] = useState(0);
+  // Initialise to the real value so SSR / crawlers / no-JS see the true number,
+  // never 0. The count-up animation overrides this on scroll into view.
+  const [count, setCount] = useState(end);
   const [active, setActive] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // count is already initialised to the final value, so when motion is
+    // reduced we simply skip the animation and leave it as-is.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setCount(end);
       return;
     }
     const observer = new IntersectionObserver(

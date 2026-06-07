@@ -6,8 +6,8 @@ export const SITE = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://papyrus360.com",
   email: "info@papyrus360.com",
   support: "support@papyrus360.com",
-  phone: "+91 98765 43210",
-  whatsapp: "919876543210",
+  phone: "+91 99726 35324",
+  whatsapp: "919972635324",
   whatsappMessage:
     "Hi Papyrus360, I'd like to know more about your products and services for my paper mill.",
   company: "Netique Infotech Pvt Ltd.",

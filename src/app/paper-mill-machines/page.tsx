@@ -1,10 +1,11 @@
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CTABanner } from '@/components/sections/cta-banner';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Paper Mill Machines — Complete Equipment Guide | Papyrus360',
+export const metadata = pageMeta({
+  title: 'Paper Mill Machines — Complete Equipment Guide',
+  path: '/paper-mill-machines',
   description:
     'Comprehensive visual guide to every major machine in a paper mill — wood yard, pulp mill, stock preparation, forming, pressing, drying, coating, finishing, converting, and chemical recovery. 40 machines illustrated for mill managers, engineers, and procurement teams.',
   keywords: [
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     'bleaching tower pulp mill',
     'paper mill equipment complete guide',
   ],
-};
+});
 
 interface Machine {
   name: string;

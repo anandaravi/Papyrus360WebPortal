@@ -1,12 +1,13 @@
-import type { Metadata } from 'next';
 import { CheckCircle, TrendingUp, ArrowRight } from 'lucide-react';
 import { CTABanner } from '@/components/sections/cta-banner';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Case Studies — Paper Mill Results | Papyrus360',
+export const metadata = pageMeta({
+  title: 'Case Studies — Paper Mill Results',
+  path: '/case-studies',
   description:
     'Real outcomes from Indian paper mills using Papyrus360 software and services — trim waste reduction with Optrim, full ERP go-lives with BPApp, raw material import savings, and GST compliance overhauls.',
-};
+});
 
 type ProductType = 'optrim' | 'bpapp' | 'rawmaterial';
 

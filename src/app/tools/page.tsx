@@ -1,11 +1,12 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { BookOpen, LayoutList, FlaskConical } from 'lucide-react';
 import { CTABanner } from '@/components/sections/cta-banner';
 import { ToolsClient } from './tools-client';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: 'Paper Industry Calculators & Conversion Tools',
+  path: '/tools',
   description:
     'Free online calculators for the paper industry — GSM calculator, basis weight converter, ream weight, roll weight, roll length, caliper converter, sheet count, and price per ream tools.',
   keywords: [
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     'paper price calculator',
     'paper industry tools',
   ],
-};
+});
 
 export default function ToolsPage() {
   return (

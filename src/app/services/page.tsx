@@ -1,16 +1,17 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { services, type Service } from '@/lib/services';
 import { PageHero } from '@/components/ui/page-hero';
 import { CTABanner } from '@/components/sections/cta-banner';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: 'Services',
+  path: '/services',
   description:
     'Papyrus360 services — software implementation, IT support, process improvement, product development, marketing, sales, factory erection, manpower, management consulting, compliance, procurement, import/export for Indian paper industry.',
-};
+});
 
 function ServiceGrid({ items }: { items: Service[] }) {
   return (

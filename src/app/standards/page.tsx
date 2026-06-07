@@ -1,8 +1,9 @@
-import type { Metadata } from 'next';
 import { CTABanner } from '@/components/sections/cta-banner';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Paper Industry Testing Standards — BIS, ISO & TAPPI Reference | Papyrus360',
+export const metadata = pageMeta({
+  title: 'Paper Industry Testing Standards — BIS, ISO & TAPPI Reference',
+  path: '/standards',
   description:
     'Complete reference for paper and board testing standards — Indian BIS (IS), international ISO, and TAPPI standards for grammage, caliper, tensile, burst, tear, opacity, brightness, moisture and more.',
   keywords: [
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
     'paper burst strength standard',
     'paper brightness ISO',
   ],
-};
+});
 
 type Standard = {
   code: string;

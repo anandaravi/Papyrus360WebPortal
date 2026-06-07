@@ -1,12 +1,13 @@
-import type { Metadata } from 'next';
 import { ChevronDown } from 'lucide-react';
 import { CTABanner } from '@/components/sections/cta-banner';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'FAQ — Paper Industry, ERP & Services | Papyrus360',
+export const metadata = pageMeta({
+  title: 'FAQ — Paper Industry, ERP & Services',
+  path: '/faq',
   description:
     'Answers to frequently asked questions about Papyrus360, BP App ERP, Optrim deckle optimisation, raw material sourcing, and paper industry terminology. 24+ years serving Indian paper mills.',
-};
+});
 
 type FaqItem = {
   question: string;

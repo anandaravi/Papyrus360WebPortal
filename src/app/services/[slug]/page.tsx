@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react';
 import { services } from '@/lib/services';
+import { pageMeta } from '@/lib/seo';
 import fs from 'fs';
 
 type Props = {
@@ -18,10 +19,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = services.find((s) => s.slug === slug);
   if (!service) return {};
-  return {
+  return pageMeta({
     title: service.name,
+    path: `/services/${slug}`,
     description: service.description,
-  };
+  });
 }
 
 export default async function ServicePage({ params }: Props) {

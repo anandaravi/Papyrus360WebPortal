@@ -1,16 +1,17 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { products } from '@/lib/products';
 import type { ProductStatus } from '@/lib/products';
 import { PageHero } from '@/components/ui/page-hero';
 import { CTABanner } from '@/components/sections/cta-banner';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: 'Products',
+  path: '/products',
   description:
     'All Papyrus360 products — Papyrus BP App ERP, Optrim deckle optimisation, Optrim Web, Papy ERP, PDN Process App, and legacy software for paper mills.',
-};
+});
 
 const statusGroups: { status: ProductStatus; label: string; description: string }[] = [
   {

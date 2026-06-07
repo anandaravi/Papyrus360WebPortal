@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ArrowRight, ExternalLink, ArrowLeft } from 'lucide-react';
 import { products } from '@/lib/products';
+import { pageMeta } from '@/lib/seo';
 import fs from 'fs';
 
 type Props = {
@@ -18,10 +19,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = products.find((p) => p.slug === slug);
   if (!product) return {};
-  return {
+  return pageMeta({
     title: product.name,
+    path: `/products/${slug}`,
     description: product.description,
-  };
+  });
 }
 
 export default async function ProductPage({ params }: Props) {

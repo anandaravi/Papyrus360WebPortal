@@ -1,10 +1,11 @@
-import type { Metadata } from 'next';
 import { ExternalLink, Cloud } from 'lucide-react';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: 'Customer Login',
+  path: '/customer-login',
   description: 'Access Papyrus360 cloud services — OptrimWeb deckle optimisation and more.',
-};
+});
 
 type CloudService = {
   id: string;

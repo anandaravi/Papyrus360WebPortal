@@ -1,9 +1,10 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CTABanner } from '@/components/sections/cta-banner';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Paper Grade Guide — Types, GSM Ranges & Properties | Papyrus360',
+export const metadata = pageMeta({
+  title: 'Paper Grade Guide — Types, GSM Ranges & Properties',
+  path: '/paper-grades',
   description:
     'Comprehensive guide to paper and board grades — newsprint, SC, LWC, HWC, art coated, UWF/bond, kraft, duplex, FBB, tissue. Compare GSM ranges, brightness, opacity, base fibre, coating, and typical uses. Includes India-specific grades.',
   keywords: [
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     'paper grade selection',
     'paper brightness opacity comparison',
   ],
-};
+});
 
 const grades = [
   {

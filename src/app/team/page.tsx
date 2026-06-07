@@ -1,13 +1,14 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Mail } from 'lucide-react';
 import { CTABanner } from '@/components/sections/cta-banner';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Our Team — Paper Industry Experts | Papyrus360',
+export const metadata = pageMeta({
+  title: 'Our Team — Paper Industry Experts',
+  path: '/team',
   description:
     'Meet the Papyrus360 team — paper mill veterans, ERP architects, compliance specialists, and import managers who have spent their careers inside the Indian paper industry.',
-};
+});
 
 // TODO: replace with real team data
 const team = [

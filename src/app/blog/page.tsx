@@ -1,13 +1,14 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Rss } from 'lucide-react';
 import { PageHero } from '@/components/ui/page-hero';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: 'Blog',
+  path: '/blog',
   description:
     'Insights on paper manufacturing, ERP, deckle optimisation, and Indian compliance — from the Papyrus360 team.',
-};
+});
 
 export default function BlogPage() {
   return (

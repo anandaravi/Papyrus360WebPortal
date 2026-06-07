@@ -1,11 +1,12 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2, XCircle, MinusCircle, Zap, Monitor, Globe, LayoutGrid } from 'lucide-react';
 import { DeckleClient } from './deckle-client';
 import { CTABanner } from '@/components/sections/cta-banner';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Deckle Optimizer — Slitter Pattern Calculator | Papyrus360',
+export const metadata = pageMeta({
+  title: 'Deckle Optimizer — Slitter Pattern Calculator',
+  path: '/tools/deckle-optimizer',
   description:
     'Free deckle optimizer for paper mills. Enter deckle width, knife count, and order widths to get optimal slitter patterns with trim loss and set quantities. See how our production-grade Optrim suite takes it further.',
   keywords: [
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     'paper mill tools',
     'optrim',
   ],
-};
+});
 
 // ─── Comparison data ─────────────────────────────────────────────────────────
 
