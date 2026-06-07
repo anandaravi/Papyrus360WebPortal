@@ -11,7 +11,7 @@ const components: MDXComponents = {
       width={1200}
       height={630}
       style={{ width: '100%', height: 'auto' }}
-      {...(props as ImageProps)}
+      {...(props as Omit<ImageProps, 'alt'>)}
     />
   ),
   a: ({ href = '', children, ...rest }) => {
