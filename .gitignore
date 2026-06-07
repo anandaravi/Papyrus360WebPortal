@@ -44,3 +44,6 @@ next-env.d.ts
 # service.sh runtime files
 .papyrus360.log
 .papyrus360.pid
+
+# local dev launchers (personal, not part of the site)
+runclaude_noask.sh
