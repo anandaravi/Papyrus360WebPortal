@@ -1,0 +1,74 @@
+Every paper mill loses a slice of every reel it makes. Not to theft, not to breakdowns — to **trim**. The strip of paper that falls off the edge of the winder because the order widths didn't quite add up to the deckle. It looks like nothing. A few centimetres here, a narrow ribbon there. Over a year it is one of the largest controllable costs on the floor.
+
+This post explains where trim loss comes from, why a "small" percentage is bigger than it looks, and how [deckle optimisation](/tools/deckle-optimizer) claws most of it back.
+
+## What "deckle" actually means
+
+On the wet end, the **[deckle](/glossary#term-deckle)** is the usable width of the paper web — how wide the sheet is as it comes off the machine. A mill might run a 4,200 mm deckle. Every order it slits has to be carved out of that width.
+
+Customers don't order in machine widths. They order in *their* widths: 850 mm, 1,000 mm, 1,250 mm, whatever their converting line needs. The winder's knives cut the parent reel into those widths. Whatever is left over after the knives have taken their share is **[trim](/glossary#term-trim)** — waste.
+
+> If your orders are 850 + 1,000 + 1,250 + 1,000 = 4,100 mm out of a 4,200 mm deckle, the remaining 100 mm gets trimmed off and repulped. That 100 mm is ~2.4% of the reel, gone, on every set run to that pattern.
+
+## Why a small percentage is not a small number
+
+Trim loss is usually quoted as a percentage of production. The instinct is to wave away "2–3%." Don't. Run the arithmetic on a mid-size mill:
+
+| Input | Value |
+| --- | --- |
+| Production | 60,000 tonnes/year |
+| Net realisation | ₹55,000/tonne |
+| Annual revenue at deckle | ₹330 crore |
+| Trim loss at 5% | 3,000 tonnes |
+| Recovered value if trim → 2% | 1,800 tonnes |
+| **Value of a 3-point improvement** | **≈ ₹9.9 crore/year** |
+
+The trimmed paper isn't worthless — it goes back as broke. But broke is recovered fibre, not sold product. You paid to pulp it, refine it, form it, press it, dry it, and wind it, and then you unwound that value back into the pulper. The energy and chemical cost of that round trip is pure loss, and the tonne never becomes revenue.
+
+Three points of trim on a 60,000 tonne mill is roughly **₹10 crore a year**. That is the prize.
+
+## Where the loss actually hides
+
+Trim loss isn't one problem. It's four:
+
+1. **Bad pattern selection.** The combination of order widths chosen for a given reel leaves a wide gap below the deckle. This is the obvious one.
+2. **Knife count limits.** A winder has a fixed number of knives. You may have a mathematically perfect combination that needs seven cuts on a six-knife winder — so you can't run it.
+3. **Minimum/maximum width rules.** Knives can't sit arbitrarily close. Slitting below a minimum width is unstable; very narrow ribbons whip and break. The optimiser has to respect the machine, not just the maths.
+4. **Order-quantity mismatch.** A pattern that wastes almost nothing is useless if it produces 400 tonnes of a width the customer only ordered 80 tonnes of. Now you have finished-goods inventory instead of trim — a different cost, same root cause.
+
+A spreadsheet can find a low-trim combination. It cannot balance all four of these against each other across a whole order book. That is what makes deckle optimisation a real optimisation problem and not a sum.
+
+## The cutting-stock problem
+
+Formally, this is the **one-dimensional cutting-stock problem**: given a stock width (the deckle) and a set of demanded widths with quantities, find the set of cutting patterns — and how many reels to run on each — that satisfies demand with the least waste.
+
+It is NP-hard. For a handful of widths you can almost eyeball it. For a real order book — twenty widths, quantity targets, a knife limit, minimum-width and maximum-reels-per-set constraints — the search space explodes. The classic approach is the Gilmore–Gomory column-generation method: instead of enumerating every possible pattern up front (there are astronomically many), you generate only the patterns that can actually improve the solution, solving a knapsack sub-problem at each step.
+
+You don't need to implement that yourself. You need to understand the shape of it: **the optimiser is choosing patterns *and* run-lengths together, under machine constraints, to minimise total waste across the whole demand — not to make any single reel perfect.**
+
+## Try it on your own numbers
+
+We built a free [Deckle Optimizer](/tools/deckle-optimizer) you can use right now — enter your deckle width, knife count, and order widths, and it returns slitter patterns with the trim loss and set quantities for each. It's the fastest way to see what's achievable on a specific set before you commit the machine.
+
+The free tool handles a single deckle and a clean order list. That's enough to prove the point and to plan a straightforward set. Where it stops is where a production mill keeps going:
+
+- **Many machines, many deckles** optimised together, so an order can be placed on whichever machine wastes the least.
+- **Order-book–wide optimisation**, balancing trim against finished-goods inventory across the full demand, not one set at a time.
+- **Grammage and grade changes** sequenced to minimise machine downtime alongside trim.
+- **Live integration with sales and production**, so the optimised plan becomes the actual schedule.
+
+That production-grade version is [Optrim](/products/optrim) — the same cutting-stock engine, built for the whole mill rather than a single set. If you run more than one machine or optimise against a live order book, that's the line where a calculator stops paying off and a system starts.
+
+## What to do this week
+
+You don't need a project to start. You need a measurement.
+
+1. **Measure your real trim rate.** Not the number in last year's report — pull the actual slit widths versus deckle for the last month and compute it. Most mills are higher than they think.
+2. **Re-optimise your top five repeating patterns.** The widths you run every week are where compounding waste lives. Even a one-point gain on a high-volume pattern beats a perfect solution on something you run twice a year.
+3. **Check the constraint, not just the maths.** If your "best" pattern never actually runs, the binding limit is knives or minimum width — fix the constraint and the maths follows.
+
+Trim loss is the rare cost that's large, controllable, and measurable with data you already have. Start by knowing your number.
+
+---
+
+*Want this run against your actual order book across every machine? [Talk to us](/contact) — deckle and trim optimisation is what we've done for Indian paper mills for over 24 years.*
