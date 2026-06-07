@@ -5,6 +5,8 @@ import { notFound } from 'next/navigation';
 import { ArrowRight, ExternalLink, ArrowLeft } from 'lucide-react';
 import { products } from '@/lib/products';
 import { pageMeta } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/json-ld';
+import { SITE } from '@/lib/constants';
 import fs from 'fs';
 
 type Props = {
@@ -54,8 +56,25 @@ export default async function ProductPage({ params }: Props) {
     specialist: 'Specialist',
   }[product.category];
 
+  const softwareSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: product.name,
+    description: product.description,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: product.slug === 'optrim' ? 'Windows' : 'Web',
+    url: product.externalUrl ?? `${SITE.url}/products/${slug}`,
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.name,
+      legalName: SITE.company,
+      url: SITE.url,
+    },
+  };
+
   return (
     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <JsonLd data={softwareSchema} />
       {/* Back */}
       <Link
         href="/products"

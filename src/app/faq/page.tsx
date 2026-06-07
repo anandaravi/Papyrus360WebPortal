@@ -1,6 +1,7 @@
 import { ChevronDown } from 'lucide-react';
 import { CTABanner } from '@/components/sections/cta-banner';
 import { pageMeta } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/json-ld';
 
 export const metadata = pageMeta({
   title: 'FAQ — Paper Industry, ERP & Services',
@@ -208,8 +209,21 @@ const ALL_CATEGORY_ID = 'all';
 export default function FaqPage() {
   const totalQuestions = FAQ_DATA.reduce((sum, cat) => sum + cat.items.length, 0);
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ_DATA.flatMap((cat) =>
+      cat.items.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      }))
+    ),
+  };
+
   return (
     <>
+      <JsonLd data={faqSchema} />
       {/* Hero */}
       <div className="border-b border-border bg-surface-2">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">

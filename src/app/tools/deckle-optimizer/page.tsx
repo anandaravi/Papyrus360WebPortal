@@ -3,6 +3,8 @@ import { ArrowRight, CheckCircle2, XCircle, MinusCircle, Zap, Monitor, Globe, La
 import { DeckleClient } from './deckle-client';
 import { CTABanner } from '@/components/sections/cta-banner';
 import { pageMeta } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/json-ld';
+import { SITE } from '@/lib/constants';
 
 export const metadata = pageMeta({
   title: 'Deckle Optimizer — Slitter Pattern Calculator',
@@ -381,9 +383,23 @@ function DecklePromo() {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
+const deckleToolSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Deckle Optimizer — Slitter Pattern Calculator',
+  description:
+    'Free deckle optimizer for paper mills. Enter deckle width, knife count, and order widths to get optimal slitter patterns with trim loss and set quantities.',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  url: `${SITE.url}/tools/deckle-optimizer`,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
+  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+};
+
 export default function DeckleOptimizerPage() {
   return (
     <>
+      <JsonLd data={deckleToolSchema} />
       <div className="border-b border-border bg-surface-2">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 md:py-20">
           <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
