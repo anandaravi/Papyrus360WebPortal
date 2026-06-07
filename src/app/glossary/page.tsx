@@ -99,6 +99,15 @@ const grouped = terms.reduce<Record<string, typeof terms>>((acc, t) => {
 
 const letters = Object.keys(grouped).sort();
 
+// Slugify a term into a stable anchor id so other pages can deep-link, e.g.
+// /glossary#term-gsm. Exported for reuse by linking pages.
+export function termSlug(term: string) {
+  return term
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 export default function GlossaryPage() {
   return (
     <>
@@ -164,7 +173,8 @@ export default function GlossaryPage() {
                 {grouped[letter].map((item) => (
                   <div
                     key={item.term}
-                    className="rounded-xl border border-border bg-surface-2 px-5 py-4 hover:border-amber-500/30 transition-colors duration-200"
+                    id={`term-${termSlug(item.term)}`}
+                    className="scroll-mt-20 rounded-xl border border-border bg-surface-2 px-5 py-4 hover:border-amber-500/30 transition-colors duration-200"
                   >
                     <dt className="font-semibold text-foreground mb-1.5">{item.term}</dt>
                     <dd className="text-sm text-text-2 leading-relaxed">{item.definition}</dd>

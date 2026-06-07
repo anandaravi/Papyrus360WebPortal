@@ -127,6 +127,17 @@ export default async function ProductPage({ params }: Props) {
         <p className="text-lg text-text-2 leading-relaxed">{product.description}</p>
       </div>
 
+      {/* Try-before-you-buy link for the deckle products */}
+      {product.category === 'deckle' && (
+        <div className="mb-12 rounded-xl border border-border bg-surface-2 px-5 py-4 text-sm text-text-2">
+          Want to see the engine in action first?{' '}
+          <Link href="/tools/deckle-optimizer" className="text-amber-400 hover:underline">
+            Try the free Deckle Optimizer
+          </Link>{' '}
+          — same cutting-stock approach, no install.
+        </div>
+      )}
+
       {/* CTA */}
       <div className="flex flex-wrap gap-4 pt-8 border-t border-border">
         {product.externalUrl ? (

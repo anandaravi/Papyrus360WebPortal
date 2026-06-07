@@ -117,6 +117,41 @@ export default function ToolsPage() {
               </div>
             </Link>
           </div>
+
+          {/* Deep links into the glossary for terms these calculators use */}
+          <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs">
+            <span className="text-text-3">Key terms:</span>
+            {[
+              { label: 'GSM', anchor: 'gsm-grammage' },
+              { label: 'Basis weight', anchor: 'basis-weight' },
+              { label: 'Caliper', anchor: 'caliper' },
+              { label: 'Ream', anchor: 'ream' },
+              { label: 'Bulk', anchor: 'bulk' },
+              { label: 'Deckle', anchor: 'deckle' },
+            ].map((t) => (
+              <Link
+                key={t.anchor}
+                href={`/glossary#term-${t.anchor}`}
+                className="text-text-2 hover:text-amber-400 underline decoration-border underline-offset-4 transition-colors"
+              >
+                {t.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Related interactive tool + the products that automate this work */}
+          <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs">
+            <span className="text-text-3">Go further:</span>
+            <Link href="/tools/deckle-optimizer" className="text-text-2 hover:text-amber-400 underline decoration-border underline-offset-4 transition-colors">
+              Deckle Optimizer
+            </Link>
+            <Link href="/products/optrim" className="text-text-2 hover:text-amber-400 underline decoration-border underline-offset-4 transition-colors">
+              Optrim (deckle software)
+            </Link>
+            <Link href="/products/bpapp" className="text-text-2 hover:text-amber-400 underline decoration-border underline-offset-4 transition-colors">
+              Papyrus BP App (ERP)
+            </Link>
+          </div>
         </div>
       </div>
 
