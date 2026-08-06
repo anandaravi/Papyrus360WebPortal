@@ -144,6 +144,28 @@ export default async function ProductPage({ params }: Props) {
         </ul>
       )}
 
+      {/* Public demo — external static page, so a plain anchor */}
+      {product.demo && (
+        <a
+          href={product.demo.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group mb-12 flex items-start gap-4 rounded-2xl border border-amber-500/20 bg-amber-500/5 px-5 py-4 transition-colors hover:border-amber-500/40 hover:bg-amber-500/10"
+        >
+          <span className="relative mt-1.5 flex h-2 w-2 shrink-0">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-500 opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-500" />
+          </span>
+          <span className="flex-1">
+            <span className="flex items-center gap-1.5 font-semibold text-foreground transition-colors group-hover:text-amber-400">
+              {product.demo.label}
+              <ExternalLink size={13} className="shrink-0" />
+            </span>
+            <span className="mt-1 block text-sm leading-relaxed text-text-3">{product.demo.note}</span>
+          </span>
+        </a>
+      )}
+
       {/* Capabilities */}
       {product.featureGroups && (
         <section className="mb-12">

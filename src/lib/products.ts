@@ -18,6 +18,8 @@ export type Product = {
   highlights?: string[];
   /** Grouped capability list rendered on the product detail page. */
   featureGroups?: FeatureGroup[];
+  /** Public demo anyone can open without an account. */
+  demo?: { href: string; label: string; note: string };
 };
 
 export const products: Product[] = [
@@ -31,6 +33,11 @@ export const products: Product[] = [
     category: 'erp',
     accent: '#F59E0B',
     externalUrl: 'https://bpapperp.papyrus360.com',
+    demo: {
+      href: 'https://bpapperp.papyrus360.com/twins/index.html',
+      label: 'Open the digital twin demo',
+      note: 'Paper machines, rewinders, sheeters, packaging lines and warehouses — 17 asset twins running in the browser. No login. Demo figures, not a live mill.',
+    },
     highlights: [
       '32 integrated modules',
       'Live digital twins',
