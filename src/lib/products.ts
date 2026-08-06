@@ -28,7 +28,7 @@ export const products: Product[] = [
     name: 'Papyrus BP App',
     tagline: 'Enterprise ERP for Paper Manufacturing',
     description:
-      'End-to-end ERP across 32 integrated modules — sales & exports, production, deckle optimisation, inventory, procurement, finance, HR & payroll, quality, maintenance, yard, CRM and AI insights. Live machine and warehouse digital twins, and a production workflow that scales from "log today\'s tonnage" to a fully optimised mill.',
+      'End-to-end ERP across 45 modules — sales & exports, production, deckle optimisation, inventory, procurement, finance, HR & payroll, quality, maintenance, yard, CRM and AI insights. Live machine and warehouse digital twins, and a production workflow that scales from "log today\'s tonnage" to a fully optimised mill.',
     status: 'active',
     category: 'erp',
     accent: '#F59E0B',
@@ -39,7 +39,7 @@ export const products: Product[] = [
       note: 'Paper machines, rewinders, sheeters, packaging lines and warehouses — 17 asset twins running in the browser. No login. Demo figures, not a live mill.',
     },
     highlights: [
-      '32 integrated modules',
+      '45 modules',
       'Live digital twins',
       'Scales to your mill maturity',
       'English · Hindi · Tamil',
