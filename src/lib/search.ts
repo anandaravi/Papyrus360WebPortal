@@ -27,6 +27,9 @@ const TOPICS: SearchEntry[] = [
   { title: "GST Compliance", subtitle: "GST · TDS · FEMA · PF · ESI", url: "/services/compliance-consulting", type: "Topic", keywords: "gst tds fema pf esi compliance audit tax" },
   { title: "Greenfield Mill Setup", subtitle: "Factory & machine erection", url: "/services/factory-machine-erection", type: "Topic", keywords: "greenfield brownfield mill factory machine erection commissioning" },
   { title: "ERP Implementation", subtitle: "Papyrus BP App deployment + training", url: "/services/software-implementation", type: "Topic", keywords: "erp implementation deployment training go-live papyrus bp app" },
+  { title: "Digital Twins", subtitle: "Paper machine · rewinder · sheeter · warehouse", url: "/products/bpapp", type: "Topic", keywords: "digital twin twins machine twin plant twin warehouse twin live monitoring sse shop floor oee schematic" },
+  { title: "Mill Maturity Tiers", subtitle: "Log-only → Full MRP → Optimised", url: "/products/bpapp", type: "Topic", keywords: "maturity tier production tier log only direct deckle plan mrp optimized job work converter integrated recycled rcf archetype process footprint" },
+  { title: "Partner Portal", subtitle: "Customer & supplier self-service", url: "/products/bpapp", type: "Topic", keywords: "partner portal customer portal supplier portal orders dispatch invoices ledger grn purchase order self service" },
 ];
 
 export function getSearchIndex(): SearchEntry[] {

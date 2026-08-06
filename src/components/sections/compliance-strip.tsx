@@ -1,12 +1,12 @@
 import { ShieldCheck } from "lucide-react";
 
 const BADGES = [
-  { label: "GST", sub: "GSTR-1 / 3B / 9 · e-Invoice", color: "#F59E0B" },
-  { label: "TDS / TCS", sub: "26Q · 27Q · 27EQ · Form 16A", color: "#A855F7" },
+  { label: "GST", sub: "GSTR-1 · 3B · 2B recon · e-Invoice", color: "#F59E0B" },
+  { label: "TDS / TCS", sub: "24Q · 26Q · 27EQ · Form 16 / 16A", color: "#A855F7" },
   { label: "FEMA", sub: "Exports · LC · Forex revaluation", color: "#10B981" },
-  { label: "PF / ESI", sub: "ECR · Challan · Form 16", color: "#3B82F6" },
+  { label: "PF / ESI / PT", sub: "ECR · Challan · LWF", color: "#3B82F6" },
   { label: "e-Way Bill", sub: "Auto-generate · Cancel · Extend", color: "#F97316" },
-  { label: "ISO Ready", sub: "9001 · 14001 alignment", color: "#EC4899" },
+  { label: "ISO 9001", sub: "Internal audits · 5S · CAPA", color: "#EC4899" },
 ];
 
 export function ComplianceStrip() {
