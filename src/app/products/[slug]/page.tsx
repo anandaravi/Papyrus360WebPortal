@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { ArrowRight, ExternalLink, ArrowLeft } from 'lucide-react';
+import { ArrowRight, ExternalLink, ArrowLeft, Check } from 'lucide-react';
 import { products } from '@/lib/products';
 import { pageMeta } from '@/lib/seo';
 import { JsonLd } from '@/components/seo/json-ld';
@@ -63,6 +63,9 @@ export default async function ProductPage({ params }: Props) {
     description: product.description,
     applicationCategory: 'BusinessApplication',
     operatingSystem: product.slug === 'optrim' ? 'Windows' : 'Web',
+    ...(product.featureGroups
+      ? { featureList: product.featureGroups.flatMap((g) => g.items) }
+      : {}),
     url: product.externalUrl ?? `${SITE.url}/products/${slug}`,
     publisher: {
       '@type': 'Organization',
@@ -123,9 +126,51 @@ export default async function ProductPage({ params }: Props) {
       )}
 
       {/* Description */}
-      <div className="prose prose-invert max-w-none mb-12">
+      <div className="prose prose-invert max-w-none mb-8">
         <p className="text-lg text-text-2 leading-relaxed">{product.description}</p>
       </div>
+
+      {/* Highlights */}
+      {product.highlights && (
+        <ul className="flex flex-wrap gap-2 mb-12">
+          {product.highlights.map((h) => (
+            <li
+              key={h}
+              className="text-xs font-medium px-3 py-1.5 rounded-full border border-border bg-surface text-text-2"
+            >
+              {h}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Capabilities */}
+      {product.featureGroups && (
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold tracking-tight mb-2">Capabilities</h2>
+          <p className="text-sm text-text-3 mb-8">
+            Shipped and in production use — grouped by functional area.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {product.featureGroups.map((group) => (
+              <div
+                key={group.title}
+                className="rounded-2xl border border-border bg-surface p-6 flex flex-col gap-4"
+              >
+                <h3 className="text-base font-semibold text-amber-400">{group.title}</h3>
+                <ul className="space-y-2.5">
+                  {group.items.map((item) => (
+                    <li key={item} className="flex gap-2.5 text-sm text-text-2 leading-relaxed">
+                      <Check size={14} className="text-amber-500 shrink-0 mt-1" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Try-before-you-buy link for the deckle products */}
       {product.category === 'deckle' && (
