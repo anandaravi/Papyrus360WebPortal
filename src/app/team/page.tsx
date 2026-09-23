@@ -295,11 +295,11 @@ export default function TeamPage() {
               Core Team
             </p>
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-2">
-              Employed directly by Netique Infotech.
+              The people behind every engagement.
             </h2>
             <p className="text-sm text-text-2 leading-relaxed max-w-2xl">
-              The full-time team behind every product and engagement — always in-house, always
-              accountable.
+              Full-time specialists driving every product, project, and client relationship at
+              Papyrus360.
             </p>
           </div>
         </div>
@@ -321,12 +321,11 @@ export default function TeamPage() {
               Extended Team
             </p>
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-2">
-              Domain consultants & SMEs, engaged as needed.
+              A trusted bench of specialists.
             </h2>
             <p className="text-sm text-text-2 leading-relaxed max-w-2xl">
-              A bench of independent specialists — subject-matter experts across mill operations,
-              compliance, and other disciplines — who are not on payroll but are always available
-              and brought onto an engagement exactly when that expertise is required.
+              Subject-matter experts across mill operations, compliance, and other disciplines —
+              always on hand, and brought in exactly when a project calls for that depth.
             </p>
           </div>
         </div>
