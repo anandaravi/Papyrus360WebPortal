@@ -1,6 +1,7 @@
 import { Eye, ShieldCheck, Mail } from 'lucide-react';
 import { pageMeta } from '@/lib/seo';
 import { SITE } from '@/lib/constants';
+import { PoshPdfViewer } from '@/components/posh/posh-pdf-viewer';
 
 export const metadata = pageMeta({
   title: 'POSH Policy — Prevention of Sexual Harassment at Workplace',
@@ -85,18 +86,12 @@ export default function PoshPolicyPage() {
         </div>
       </div>
 
-      {/* Embedded viewer — read-only, no download affordance */}
+      {/* Embedded viewer — pages rendered to canvas, no download affordance */}
       <div id="original-pdf" className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-10 scroll-mt-24">
         <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
           Original Document
         </p>
-        <div className="rounded-xl border border-border overflow-hidden bg-surface-2" style={{ height: 780 }}>
-          <iframe
-            src={`${POSH_PDF}#toolbar=0&navpanes=0`}
-            title="POSH Policy — original PDF"
-            className="w-full h-full"
-          />
-        </div>
+        <PoshPdfViewer src={POSH_PDF} />
       </div>
 
       {/* Content */}

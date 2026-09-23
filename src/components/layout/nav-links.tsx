@@ -19,6 +19,8 @@ const companyLinks = [
   { href: '/about', label: 'About' },
   { href: '/team', label: 'Team' },
   { href: '/case-studies', label: 'Case Studies' },
+  { href: '/posh-policy', label: 'POSH Policy' },
+  { href: '/agm-notices', label: 'AGM Notices' },
 ];
 
 const resourceLinks = [
@@ -28,8 +30,6 @@ const resourceLinks = [
   { href: '/paper-grades', label: 'Paper Grades' },
   { href: '/paper-mill-machines', label: 'Paper Mill Machines' },
   { href: '/faq', label: 'FAQ' },
-  { href: '/posh-policy', label: 'POSH Policy' },
-  { href: '/agm-notices', label: 'AGM Notices' },
 ];
 
 export function NavLinks() {
