@@ -1,5 +1,6 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { Mail } from 'lucide-react';
+import { Award, Mail } from 'lucide-react';
 import { CTABanner } from '@/components/sections/cta-banner';
 import { pageMeta } from '@/lib/seo';
 
@@ -15,6 +16,8 @@ const team = [
   {
     name: 'Anand Krishnamurthy',
     initials: 'AK',
+    photo: null,
+    stat: { value: '35+', label: 'Years Experience' },
     role: 'Founder & Managing Director',
     expertise: ['Paper Mill Operations', 'ERP Strategy', 'Raw Material Trade'],
     bio: '35+ years in the Indian paper industry — started on the mill floor, moved into operations management, then built Netique Infotech in 2002 to solve the software problems he kept hitting as a mill professional. Personally oversees every major client engagement.',
@@ -29,6 +32,8 @@ const team = [
   {
     name: 'Priya Venkataraman',
     initials: 'PV',
+    photo: null,
+    stat: { value: '20+', label: 'Years Experience' },
     role: 'Head of Software Products',
     expertise: ['BPApp ERP', 'Product Architecture', 'Manufacturing Software'],
     bio: '20 years of enterprise software development, the last 14 building paper-industry-specific ERP modules at Netique. Leads the BPApp product roadmap and oversees all software implementation projects.',
@@ -43,6 +48,8 @@ const team = [
   {
     name: 'Rajesh Subramaniam',
     initials: 'RS',
+    photo: null,
+    stat: { value: '18+', label: 'Years Experience' },
     role: 'Lead Consultant — Mill Operations',
     expertise: ['Production Planning', 'Deckle Optimisation', 'Process Improvement'],
     bio: 'Former production manager at two integrated paper mills in Tamil Nadu and Karnataka. Joined Papyrus360 as a consultant after 18 years on the mill floor. Now helps clients extract maximum yield from every reel.',
@@ -57,6 +64,8 @@ const team = [
   {
     name: 'Meera Chandrasekaran',
     initials: 'MC',
+    photo: null,
+    stat: { value: '16+', label: 'Years Experience' },
     role: 'Compliance & Finance Specialist',
     expertise: ['GST', 'TDS', 'FEMA', 'Export-Import Compliance'],
     bio: 'Chartered Accountant with 16 years of experience in paper industry finance and regulatory compliance. Advises mills on GST reconciliation, export-import documentation, and audit readiness. Leads BPApp\'s compliance module design.',
@@ -71,6 +80,8 @@ const team = [
   {
     name: 'Karthik Balaji',
     initials: 'KB',
+    photo: null,
+    stat: { value: '10+', label: 'Years Experience' },
     role: 'Raw Material & Import Manager',
     expertise: ['OCC / ONP Sourcing', 'International Trade', 'Supplier Networks'],
     bio: 'Manages Papyrus360\'s raw material import operations — OCC, ONP, woodchips, pulp, and coal. Maintains supplier relationships across the USA, Europe, Middle East, and South-East Asia. Handles end-to-end logistics from purchase order to mill delivery.',
@@ -85,6 +96,8 @@ const team = [
   {
     name: 'Divya Natarajan',
     initials: 'DN',
+    photo: null,
+    stat: { value: '30+', label: 'Go-Lives Managed' },
     role: 'Customer Success & Implementation Lead',
     expertise: ['BPApp Onboarding', 'Training', 'Client Support'],
     bio: 'Ensures every BPApp implementation goes live on time and that mill staff are fully confident using the system. Leads onboarding, conducts on-site training programmes, and manages post-go-live support for all active clients.',
@@ -168,47 +181,75 @@ export default function TeamPage() {
               key={member.name}
               className="amber-card flex flex-col gap-5 rounded-2xl border border-border bg-surface-2 p-6 transition-all duration-300"
             >
-              {/* Avatar + name */}
-              <div className="flex items-center gap-4">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-600/10 text-amber-400 font-bold text-lg tracking-tight select-none">
-                  {member.initials}
+              {/* Photo + name — centered profile header */}
+              <div className="flex flex-col items-center text-center gap-3">
+                <div className="relative">
+                  {member.photo ? (
+                    <Image
+                      src={member.photo}
+                      alt={member.name}
+                      width={96}
+                      height={96}
+                      className="h-24 w-24 rounded-full object-cover ring-2 ring-amber-500/30"
+                    />
+                  ) : (
+                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-amber-500/25 to-amber-600/10 text-amber-400 font-bold text-2xl tracking-tight ring-2 ring-amber-500/30 select-none">
+                      {member.initials}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <p className="font-bold leading-tight">{member.name}</p>
-                  <p className="text-xs text-text-3 mt-0.5 leading-snug">{member.role}</p>
+                  <p className="text-xs text-amber-400 mt-1 leading-snug uppercase tracking-wide">
+                    {member.role}
+                  </p>
                 </div>
-              </div>
-
-              {/* Expertise tags */}
-              <div className="flex flex-wrap gap-1.5">
-                {member.expertise.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-border bg-surface-3 px-2.5 py-0.5 text-xs text-text-2"
-                  >
-                    {tag}
-                  </span>
-                ))}
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-3 px-3 py-1 text-[11px] text-text-3">
+                  <span className="font-bold text-foreground">{member.stat.value}</span>
+                  {member.stat.label}
+                </span>
               </div>
 
               {/* Bio */}
               <p className="text-sm text-text-2 leading-relaxed">{member.bio}</p>
 
-              {/* Highlights */}
-              <ul className="space-y-1.5">
-                {member.highlights.map((h) => (
-                  <li key={h} className="flex items-start gap-2 text-xs text-text-3">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
-                    {h}
-                  </li>
-                ))}
-              </ul>
+              {/* Skills */}
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-2">
+                  Skills
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {member.expertise.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-border bg-surface-3 px-2.5 py-0.5 text-xs text-text-2"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Achievements */}
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-3 mb-2">
+                  Achievements
+                </p>
+                <ul className="space-y-1.5">
+                  {member.highlights.map((h) => (
+                    <li key={h} className="flex items-start gap-2 text-xs text-text-3">
+                      <Award size={12} className="mt-0.5 shrink-0 text-amber-500" />
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {/* Email — founder only */}
               {member.email && (
                 <a
                   href={`mailto:${member.email}`}
-                  className="inline-flex items-center gap-2 text-xs text-amber-400 hover:text-amber-300 transition-colors mt-auto pt-2"
+                  className="inline-flex items-center gap-2 text-xs text-amber-400 hover:text-amber-300 transition-colors mt-auto pt-2 border-t border-border"
                 >
                   <Mail size={13} />
                   {member.email}
