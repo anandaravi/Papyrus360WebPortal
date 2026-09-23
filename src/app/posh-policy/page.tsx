@@ -1,4 +1,4 @@
-import { Download, ShieldCheck, Mail } from 'lucide-react';
+import { Eye, ShieldCheck, Mail } from 'lucide-react';
 import { pageMeta } from '@/lib/seo';
 import { SITE } from '@/lib/constants';
 
@@ -66,13 +66,11 @@ export default function PoshPolicyPage() {
             Act, 2013 (&ldquo;POSH Act&rdquo;).
           </p>
           <a
-            href={POSH_PDF}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#original-pdf"
             className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-amber-500 text-black rounded-lg hover:bg-amber-400 transition-colors duration-200"
           >
-            <Download size={16} />
-            Download PDF
+            <Eye size={16} />
+            View Original PDF
           </a>
         </div>
       </div>
@@ -84,6 +82,20 @@ export default function PoshPolicyPage() {
           <span>#31, Sri Ram Mansion, 6th Cross, C.T. Bed Road, Banashankari 2nd Stage, Bengaluru - 560070, Karnataka, India</span>
           <span>GSTIN: 29AABCN9761D1Z8</span>
           <span>CIN: {SITE.cin}</span>
+        </div>
+      </div>
+
+      {/* Embedded viewer — read-only, no download affordance */}
+      <div id="original-pdf" className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-10 scroll-mt-24">
+        <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
+          Original Document
+        </p>
+        <div className="rounded-xl border border-border overflow-hidden bg-surface-2" style={{ height: 780 }}>
+          <iframe
+            src={`${POSH_PDF}#toolbar=0&navpanes=0`}
+            title="POSH Policy — original PDF"
+            className="w-full h-full"
+          />
         </div>
       </div>
 
