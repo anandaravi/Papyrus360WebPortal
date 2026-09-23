@@ -133,6 +133,8 @@ export function Footer() {
                   { href: '/paper-grades', label: 'Paper Grades' },
                   { href: '/paper-mill-machines', label: 'Paper Mill Machines' },
                   { href: '/standards', label: 'Testing Standards' },
+                  { href: '/posh-policy', label: 'POSH Policy' },
+                  { href: '/agm-notices', label: 'AGM Notices' },
                 ].map(({ href, label }) => (
                   <li key={href}>
                     <Link

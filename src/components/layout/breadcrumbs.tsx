@@ -15,6 +15,8 @@ const LABELS: Record<string, string> = {
   contact: "Contact",
   products: "Products",
   services: "Services",
+  "posh-policy": "POSH Policy",
+  "agm-notices": "AGM Notices",
 };
 
 function humanize(slug: string) {
